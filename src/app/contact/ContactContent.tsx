@@ -17,15 +17,15 @@ export function ContactContent() {
   }
 
   return (
-    <div className="flex flex-1 flex-col py-12 md:py-20 lg:py-28">
-      <Container className="flex flex-col gap-10 md:gap-14 lg:gap-16">
+    <div className="flex flex-1 flex-col py-8 md:py-12 lg:py-16">
+      <Container className="flex flex-col gap-8 md:gap-10 lg:gap-12">
         <SectionHeading
           eyebrow="Contact"
           title="Tell us what you're building — we'll meet you with clarity."
           subtitle="Expect a thoughtful reply within two business days: suggested architecture slices, collaboration options, and next steps."
         />
 
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-12 xl:gap-16">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-10 xl:gap-12">
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}

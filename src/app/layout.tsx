@@ -1,14 +1,14 @@
 import type { Metadata, Viewport } from "next";
-import { DM_Sans, Syne } from "next/font/google";
+import { DM_Sans, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
 import { ClientShell } from "@/components/providers/ClientShell";
 
-const syne = Syne({
+const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-syne",
+  variable: "--font-plus-jakarta",
   display: "swap",
 });
 
@@ -45,13 +45,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${syne.variable} ${dmSans.variable} h-full antialiased`}>
+    <html lang="en" className={`${plusJakarta.variable} ${dmSans.variable} h-full antialiased`}>
       <body className="font-sans min-h-full bg-background text-foreground">
         <ClientShell />
         <SmoothScroll>
           <div className="flex min-h-screen flex-col">
             <Header />
-            <main className="flex min-w-0 flex-1 flex-col overflow-x-hidden">{children}</main>
+            <main className="flex min-w-0 flex-1 flex-col">{children}</main>
             <Footer />
           </div>
         </SmoothScroll>

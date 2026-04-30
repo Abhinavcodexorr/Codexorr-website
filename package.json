@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build --webpack",
     "start": "next start",
+    "start:lh": "next start -p 3010",
     "lint": "eslint"
   },
   "dependencies": {

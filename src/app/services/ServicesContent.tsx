@@ -16,8 +16,8 @@ const cardReveal = {
 
 export function ServicesContent() {
   return (
-    <div className="flex flex-1 flex-col py-12 md:py-20 lg:py-28">
-      <Container className="flex flex-col gap-12 md:gap-16 lg:gap-20">
+    <div className="flex flex-1 flex-col py-8 md:py-12 lg:py-16">
+      <Container className="flex flex-col gap-8 md:gap-10 lg:gap-14">
         <SectionHeading
           eyebrow="Services"
           title="Capability depth — without the enterprise drag."

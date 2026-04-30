@@ -10,6 +10,7 @@ export function CursorFollower() {
   useEffect(() => {
     // Only show on pointer-fine devices (desktops)
     if (!window.matchMedia("(pointer: fine)").matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     let rafId: number;
     let mx = -200;
@@ -37,12 +38,12 @@ export function CursorFollower() {
       if (target.closest("a, button, [role='button'], input, textarea, select, label")) {
         if (!isHovering.current) {
           isHovering.current = true;
-          ringRef.current?.classList.add("scale-[2.2]", "border-cyan-300/60", "bg-cyan-400/[0.04]");
+          ringRef.current?.classList.add("scale-[2.2]", "border-teal-400/55", "bg-emerald-400/[0.05]");
         }
       } else {
         if (isHovering.current) {
           isHovering.current = false;
-          ringRef.current?.classList.remove("scale-[2.2]", "border-cyan-300/60", "bg-cyan-400/[0.04]");
+          ringRef.current?.classList.remove("scale-[2.2]", "border-teal-400/55", "bg-emerald-400/[0.05]");
         }
       }
     }
@@ -75,7 +76,7 @@ export function CursorFollower() {
     <div
       ref={ringRef}
       aria-hidden
-        className="pointer-events-none fixed left-0 top-0 z-[9999] h-10 w-10 rounded-full border border-cyan-500/50 opacity-0 transition-[border-color,background-color,scale] duration-300 will-change-transform"
+        className="pointer-events-none fixed left-0 top-0 z-[9999] h-10 w-10 rounded-full border border-teal-500/45 opacity-0 transition-[border-color,background-color,scale] duration-300 will-change-transform"
     />
   );
 }

@@ -23,33 +23,27 @@ export function SectionHeading({
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] as const }}
       className={cn(
-        "flex w-full min-w-0 max-w-3xl flex-col gap-4",
+        "flex w-full min-w-0 max-w-3xl flex-col gap-3",
         align === "center" ? "mx-auto text-center" : "text-left",
       )}
     >
       {theme === "dark" ? (
         <div className={cn("flex", align === "center" ? "justify-center" : "justify-start")}>
           <div className="relative inline-flex overflow-hidden rounded-full border border-cyan-400/25 bg-cyan-500/[0.08] px-4 py-1.5 backdrop-blur-sm">
-            <motion.span
-              aria-hidden
-              className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent"
-              animate={{ translateX: ["-100%", "250%"] }}
-              transition={{ repeat: Infinity, duration: 2.5, repeatDelay: 2.5, ease: "easeInOut" }}
-            />
             <span className="relative font-mono text-[10px] font-semibold uppercase tracking-[0.3em] text-cyan-400/90">
               {eyebrow}
             </span>
           </div>
         </div>
       ) : (
-        <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.3em] text-cyan-600">
+        <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.3em] bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
           {eyebrow}
         </span>
       )}
 
       <h2
         className={cn(
-          "font-heading text-2xl font-semibold tracking-tight sm:text-3xl md:text-[2.75rem] md:leading-[1.2]",
+          "font-heading text-2xl font-semibold tracking-tight sm:text-3xl md:text-[2.75rem] leading-normal md:leading-snug",
           theme === "light" ? "text-slate-900" : "text-slate-50",
           theme === "dark" && "text-glow-sm",
         )}

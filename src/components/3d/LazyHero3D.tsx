@@ -2,24 +2,25 @@
 
 import dynamic from "next/dynamic";
 import { Suspense, useEffect, useRef, useState } from "react";
+import { cn } from "@/lib/cn";
 
-const NeuralNetworkHero = dynamic(
-  () => import("./NeuralNetworkHero").then((m) => m.NeuralNetworkHero),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="pointer-events-none absolute inset-0 min-h-full bg-transparent" aria-hidden />
-    ),
-  },
-);
+function Hero3DPlaceholder() {
+  return (
+    <div
+      aria-hidden
+      className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-teal-100/45 via-cyan-50/80 to-violet-100/45 ring-1 ring-teal-200/40"
+    />
+  );
+}
 
-/**
- * WebGL layer only on md+ after confirm + in-view. Initial `desktop=false` matches SSR and avoids hydration mismatch.
- * HeroSection supplies its own CSS backdrop so mobile never depends on this layer.
- */
-export function LazyNeuralHero() {
+const Hero3DCanvas = dynamic(() => import("@/components/3d/Hero3D"), {
+  ssr: false,
+  loading: Hero3DPlaceholder,
+});
+
+/** Desktop lg+: loads WebGL after hero enters viewport. */
+export function LazyHero3D({ className }: { className?: string }) {
   const rootRef = useRef<HTMLDivElement>(null);
-  /* false on server & first paint — aligns with SSR; avoids showing wrong branch on phones */
   const [desktop, setDesktop] = useState(false);
   const [shouldLoad, setShouldLoad] = useState(false);
 
@@ -41,7 +42,7 @@ export function LazyNeuralHero() {
           io.disconnect();
         }
       },
-      { rootMargin: "140px 0px 160px 0px", threshold: 0 },
+      { rootMargin: "100px 0px 120px 0px", threshold: 0 },
     );
     io.observe(node);
     return () => io.disconnect();
@@ -52,12 +53,18 @@ export function LazyNeuralHero() {
   }
 
   return (
-    <div ref={rootRef} className="pointer-events-none absolute inset-0 z-0 min-h-full min-h-[min(100%,680px)] w-full">
+    <div ref={rootRef} className={cn("relative isolate h-full min-h-[300px] w-full overflow-hidden lg:min-h-[400px]", className)}>
       {shouldLoad ? (
-        <Suspense fallback={<div className="min-h-full w-full bg-transparent" aria-hidden />}>
-          <NeuralNetworkHero />
+        <Suspense fallback={<Hero3DPlaceholder />}>
+          <Hero3DCanvas />
         </Suspense>
-      ) : null}
+      ) : (
+        <Hero3DPlaceholder />
+      )}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 rounded-[inherit] shadow-[inset_0_0_80px_rgba(255,255,255,0.72)]"
+      />
     </div>
   );
 }

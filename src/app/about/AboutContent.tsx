@@ -34,15 +34,15 @@ const milestones = [
 
 export function AboutContent() {
   return (
-    <div className="flex flex-1 flex-col py-12 md:py-20 lg:py-28">
-      <Container className="flex flex-col gap-12 md:gap-16 lg:gap-24">
+    <div className="flex flex-1 flex-col py-8 md:py-12 lg:py-16">
+      <Container className="flex flex-col gap-8 md:gap-12 lg:gap-16">
         <SectionHeading
           eyebrow="Company"
           title="Precision engineering for ambitious roadmaps."
           subtitle="We're not a volume shop — each engagement gets architects who've shipped under pressure and refuse to hide behind tickets."
         />
 
-        <div className="grid gap-8 lg:grid-cols-2 lg:items-start lg:gap-16">
+        <div className="grid gap-6 lg:grid-cols-2 lg:items-start lg:gap-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -78,7 +78,7 @@ export function AboutContent() {
           </motion.div>
         </div>
 
-        <div className="flex flex-col gap-10 md:gap-14">
+        <div className="flex flex-col gap-8 md:gap-10">
           <SectionHeading
             eyebrow="Timeline"
             title="A steady arc — no overnight hype."
@@ -95,7 +95,7 @@ export function AboutContent() {
               transition={{ duration: 1.05, ease: [0.22, 1, 0.36, 1] }}
             />
 
-            <ul className="flex flex-col gap-10 md:gap-12">
+            <ul className="flex flex-col gap-8 md:gap-10">
               {milestones.map((m, i) => (
                 <motion.li
                   key={m.year}

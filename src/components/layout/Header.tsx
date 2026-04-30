@@ -27,17 +27,17 @@ export function Header() {
         <Link
           href="/"
           aria-label="CodeXorr home"
-          className="group relative flex shrink-0 items-center gap-2.5 rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/60"
+          className="group relative flex shrink-0 items-center gap-2.5 rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/55"
         >
           <Image
             src="/logo.png"
             alt=""
-            width={36}
-            height={36}
+            width={48}
+            height={48}
             priority
-            className="h-9 w-9 transition-transform duration-300 group-hover:scale-[1.04]"
+            className="h-11 w-11 transition-transform duration-300 group-hover:scale-[1.04] md:h-12 md:w-12"
           />
-          <span className="font-heading text-[1.1rem] font-bold tracking-tight text-slate-900 transition-colors duration-300 group-hover:text-cyan-700">
+          <span className="font-heading text-[1.15rem] font-bold tracking-tight text-slate-900 transition-colors duration-300 group-hover:text-teal-700 md:text-[1.25rem]">
             CodeXorr
           </span>
         </Link>
@@ -51,13 +51,13 @@ export function Header() {
                 href={link.href}
                 className={cn(
                   "relative inline-flex items-center justify-center rounded-full px-4 py-2 font-mono text-xs font-medium uppercase tracking-[0.18em] transition-colors duration-300",
-                  active ? "text-cyan-700" : "text-slate-500 hover:text-slate-900",
+                  active ? "text-teal-700" : "text-slate-500 hover:text-slate-900",
                 )}
               >
                 {active && (
                   <motion.span
                     layoutId="nav-pill"
-                    className="absolute inset-0 rounded-full bg-cyan-500/10"
+                    className="absolute inset-0 rounded-full bg-emerald-500/10"
                     transition={{ type: "spring", stiffness: 380, damping: 32 }}
                   />
                 )}
@@ -70,7 +70,7 @@ export function Header() {
         <div className="hidden items-center gap-4 lg:flex">
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-cyan-500 via-sky-500 to-violet-500 px-6 py-2.5 text-sm font-semibold text-white shadow-[0_8px_24px_-12px_rgba(34,211,238,0.7)] transition-all duration-300 hover:brightness-110 hover:shadow-[0_12px_32px_-12px_rgba(167,139,250,0.7)]"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-teal-500 via-cyan-500 to-violet-500 px-6 py-2.5 text-sm font-semibold text-white shadow-[0_8px_24px_-12px_rgba(20,184,166,0.55)] transition-all duration-300 hover:brightness-110 hover:shadow-[0_12px_32px_-12px_rgba(167,139,250,0.55)]"
           >
             Book a call
           </Link>
@@ -81,7 +81,7 @@ export function Header() {
           aria-expanded={open}
           aria-controls="mobile-nav"
           onClick={() => setOpen((v) => !v)}
-          className="inline-flex items-center justify-center rounded-xl border border-slate-200 bg-white p-2.5 text-slate-700 shadow-sm transition-colors hover:border-cyan-400/50 hover:text-cyan-700 lg:hidden"
+          className="inline-flex items-center justify-center rounded-xl border border-slate-200 bg-white p-2.5 text-slate-700 shadow-sm transition-colors hover:border-teal-300/55 hover:text-teal-700 lg:hidden"
         >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
@@ -111,7 +111,7 @@ export function Header() {
                     className={cn(
                       "block rounded-xl px-4 py-3 font-mono text-xs font-medium uppercase tracking-[0.18em] transition-colors",
                       pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href))
-                        ? "bg-cyan-500/10 text-cyan-700"
+                        ? "bg-emerald-500/10 text-teal-700"
                         : "text-slate-600 hover:bg-slate-100",
                     )}
                   >
@@ -122,7 +122,7 @@ export function Header() {
               <Link
                 href="/contact"
                 onClick={() => setOpen(false)}
-                className="mt-2 inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 via-sky-500 to-violet-500 px-6 py-3 text-sm font-semibold text-white"
+                className="mt-2 inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-teal-500 via-cyan-500 to-violet-500 px-6 py-3 text-sm font-semibold text-white"
               >
                 Book a call
               </Link>

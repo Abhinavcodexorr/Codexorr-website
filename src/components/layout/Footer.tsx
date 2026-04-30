@@ -5,7 +5,7 @@ import { Container } from "@/components/ui/Container";
 
 export function Footer() {
   return (
-    <footer className="relative mt-auto bg-slate-950 py-12 md:py-16 lg:py-20">
+    <footer className="relative mt-auto bg-slate-950 py-10 md:py-12 lg:py-14">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
 
       <Container className="relative flex flex-col gap-10 md:flex-row md:items-start md:justify-between md:gap-16">
@@ -14,8 +14,8 @@ export function Footer() {
             href="/"
             className="inline-flex items-center gap-2.5 rounded-lg outline-none ring-offset-2 ring-offset-slate-950 focus-visible:ring-2 focus-visible:ring-cyan-400/70"
           >
-            <Image src="/logo.png" alt="" width={32} height={32} className="h-8 w-8" />
-            <span className="font-heading text-lg font-bold tracking-tight text-white">CodeXorr</span>
+            <Image src="/logo.png" alt="" width={44} height={44} className="h-10 w-10" />
+            <span className="font-heading text-lg font-bold tracking-tight text-white md:text-xl">CodeXorr</span>
           </Link>
           <p className="mt-3 text-sm leading-relaxed text-slate-400">
             Enterprise-grade engineering for ambitious teams — platforms that ship fast, scale cleanly, and feel

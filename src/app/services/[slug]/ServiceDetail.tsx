@@ -20,7 +20,7 @@ export function ServiceDetail({ slug }: { slug: ServiceSlug }) {
   return (
     <div className="flex flex-1 flex-col">
       {/* Hero */}
-      <section className="relative overflow-x-clip bg-white py-12 md:py-20 lg:py-28">
+      <section className="relative overflow-x-hidden bg-white py-8 md:py-14 lg:py-16">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_0%,rgba(34,211,238,0.10),transparent_60%)]"
@@ -39,9 +39,9 @@ export function ServiceDetail({ slug }: { slug: ServiceSlug }) {
               </div>
               <span className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-700">{service.eyebrow}</span>
             </div>
-            <h1 className="font-heading max-w-3xl text-balance text-3xl font-semibold leading-[1.15] tracking-tight text-slate-900 sm:text-4xl md:text-5xl lg:text-[3.25rem]">
-              {service.title}.{" "}
-              <span className="gradient-text-animated">{service.tagline}</span>
+            <h1 className="font-heading flex max-w-3xl flex-col gap-2 text-balance pb-[0.12em] text-3xl font-semibold tracking-tight text-slate-900 sm:gap-2.5 sm:text-4xl md:gap-3 md:text-5xl lg:text-[3.25rem] lg:leading-[1.4] md:leading-[1.42] sm:leading-[1.44] leading-normal">
+              <span className="block pb-[0.06em]">{service.title}.</span>
+              <span className="gradient-text-animated block pb-[0.08em]">{service.tagline}</span>
             </h1>
             <p className="max-w-3xl text-base leading-relaxed text-slate-600 md:text-lg">{service.description}</p>
             <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap">
@@ -72,11 +72,11 @@ export function ServiceDetail({ slug }: { slug: ServiceSlug }) {
       </section>
 
       {/* Capabilities */}
-      <section className="relative bg-slate-50 py-12 md:py-20 lg:py-28">
+      <section className="relative bg-slate-50 py-8 md:py-14 lg:py-16">
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
 
-        <Container className="flex flex-col gap-10">
+        <Container className="flex flex-col gap-7">
           <div className="flex max-w-2xl flex-col gap-3">
             <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.3em] text-cyan-600">Capabilities</span>
             <h2 className="font-heading text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl md:text-[2.25rem]">
@@ -115,8 +115,8 @@ export function ServiceDetail({ slug }: { slug: ServiceSlug }) {
       </section>
 
       {/* Process */}
-      <section className="relative bg-white py-12 md:py-20 lg:py-28">
-        <Container className="flex flex-col gap-10">
+      <section className="relative bg-white py-8 md:py-14 lg:py-16">
+        <Container className="flex flex-col gap-7">
           <div className="flex max-w-2xl flex-col gap-3">
             <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.3em] text-cyan-600">Process</span>
             <h2 className="font-heading text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl md:text-[2.25rem]">
@@ -144,8 +144,8 @@ export function ServiceDetail({ slug }: { slug: ServiceSlug }) {
       </section>
 
       {/* Stack */}
-      <section className="relative bg-slate-50 py-12 md:py-20 lg:py-28">
-        <Container className="flex flex-col gap-8">
+      <section className="relative bg-slate-50 py-8 md:py-14 lg:py-16">
+        <Container className="flex flex-col gap-6">
           <div className="flex max-w-2xl flex-col gap-3">
             <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.3em] text-cyan-600">Stack</span>
             <h2 className="font-heading text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl md:text-[2.25rem]">
@@ -166,8 +166,8 @@ export function ServiceDetail({ slug }: { slug: ServiceSlug }) {
       </section>
 
       {/* FAQ */}
-      <section className="relative bg-white py-12 md:py-20 lg:py-28">
-        <Container className="flex flex-col gap-10">
+      <section className="relative bg-white py-8 md:py-14 lg:py-16">
+        <Container className="flex flex-col gap-7">
           <div className="flex max-w-2xl flex-col gap-3">
             <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.3em] text-cyan-600">FAQ</span>
             <h2 className="font-heading text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl md:text-[2.25rem]">
@@ -187,8 +187,8 @@ export function ServiceDetail({ slug }: { slug: ServiceSlug }) {
 
       {/* Related services */}
       {related.length > 0 && (
-        <section className="relative bg-slate-50 py-12 md:py-20 lg:py-28">
-          <Container className="flex flex-col gap-8">
+        <section className="relative bg-slate-50 py-8 md:py-14 lg:py-16">
+          <Container className="flex flex-col gap-6">
             <h2 className="font-heading text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
               Related services
             </h2>
@@ -215,9 +215,9 @@ export function ServiceDetail({ slug }: { slug: ServiceSlug }) {
       )}
 
       {/* CTA */}
-      <section className="relative bg-white py-12 md:py-20 lg:py-28">
+      <section className="relative bg-white py-8 md:py-14 lg:py-16">
         <Container>
-          <div className="flex flex-col items-center gap-4 rounded-3xl border border-slate-200 bg-slate-50 p-8 text-center md:p-12">
+          <div className="flex flex-col items-center gap-4 rounded-3xl border border-slate-200 bg-slate-50 p-6 text-center md:p-10">
             <h2 className="font-heading text-2xl font-semibold tracking-tight text-slate-900 md:text-3xl">
               Ready to engage on {service.title.toLowerCase()}?
             </h2>
