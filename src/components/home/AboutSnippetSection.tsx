@@ -13,11 +13,11 @@ export function AboutSnippetSection() {
   const cardY = useTransform(scrollYProgress, [0, 1], [40, -40]);
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden bg-slate-50 py-28 md:py-36">
+    <section ref={sectionRef} className="relative overflow-hidden bg-slate-950 py-28 md:py-36">
       {/* Cheap CSS gradient accent — no filter blur, no GPU layer */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_80%_10%,rgba(167,139,250,0.07),transparent),radial-gradient(ellipse_50%_35%_at_10%_90%,rgba(34,211,238,0.06),transparent)]" />
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_80%_10%,rgba(167,139,250,0.08),transparent),radial-gradient(ellipse_50%_35%_at_10%_90%,rgba(34,211,238,0.07),transparent)]" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
       <Container>
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
@@ -29,11 +29,11 @@ export function AboutSnippetSection() {
             viewport={{ once: true }} transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}>
             <HolographicCard intensity={7} glowColor="6,182,212">
               <div className="relative flex flex-col gap-6 p-8 md:p-10">
-                <p className="text-lg leading-relaxed text-slate-700">
+                <p className="text-lg leading-relaxed text-slate-300">
                   Quality is non-negotiable: observability-first builds, accessible interfaces,
                   and migrations that never strand your users.
                 </p>
-                <ul className="flex flex-col gap-4 text-sm text-slate-600">
+                <ul className="flex flex-col gap-4 text-sm text-slate-400">
                   {[
                     { color: "bg-cyan-500 shadow-[0_0_10px_rgba(6,182,212,0.6)]",   text: "Embedded solution architects on every engagement." },
                     { color: "bg-violet-500 shadow-[0_0_10px_rgba(124,58,237,0.5)]", text: "Weekly demos — zero black-box delivery." },
@@ -49,7 +49,7 @@ export function AboutSnippetSection() {
                 </ul>
                 <div className="flex flex-col gap-4 pt-2 sm:flex-row sm:flex-wrap sm:gap-4">
                   <Button href="/about">Our story</Button>
-                  <Button href="/contact" variant="ghost-dark">Talk to us</Button>
+                  <Button href="/contact" variant="ghost">Talk to us</Button>
                 </div>
               </div>
             </HolographicCard>

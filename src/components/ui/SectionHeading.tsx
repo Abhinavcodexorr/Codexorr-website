@@ -8,7 +8,7 @@ export function SectionHeading({
   title,
   subtitle,
   align = "center",
-  theme = "light",
+  theme = "dark",
 }: {
   eyebrow: string;
   title: string;

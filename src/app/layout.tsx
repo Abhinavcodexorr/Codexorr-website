@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { DM_Sans, Syne } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
-import { CursorFollower } from "@/components/ui/CursorFollower";
+import { ClientShell } from "@/components/providers/ClientShell";
 
 const syne = Syne({
   subsets: ["latin"],
@@ -33,18 +33,20 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: "#020617",
+  colorScheme: "dark",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${syne.variable} ${dmSans.variable} h-full antialiased`}
-    >
+    <html lang="en" className={`${syne.variable} ${dmSans.variable} h-full antialiased`}>
       <body className="font-sans min-h-full bg-background text-foreground">
-        <CursorFollower />
+        <ClientShell />
         <SmoothScroll>
           <div className="flex min-h-screen flex-col">
             <Header />

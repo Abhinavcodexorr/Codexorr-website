@@ -1,84 +1,49 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
-
 const stack = [
-  { label: "Next.js", hover: "hover:bg-slate-900 hover:text-white hover:border-slate-900" },
-  { label: "TypeScript", hover: "hover:bg-blue-600 hover:text-white hover:border-blue-600" },
-  { label: "Kubernetes", hover: "hover:bg-cyan-600 hover:text-white hover:border-cyan-600" },
-  { label: "Terraform", hover: "hover:bg-violet-600 hover:text-white hover:border-violet-600" },
-  { label: "PostgreSQL", hover: "hover:bg-sky-600 hover:text-white hover:border-sky-600" },
-  { label: "Redis", hover: "hover:bg-red-600 hover:text-white hover:border-red-600" },
-  { label: "AWS · GCP", hover: "hover:bg-amber-500 hover:text-white hover:border-amber-500" },
-  { label: "GraphQL · tRPC", hover: "hover:bg-pink-600 hover:text-white hover:border-pink-600" },
-  { label: "OpenTelemetry", hover: "hover:bg-emerald-600 hover:text-white hover:border-emerald-600" },
-  { label: "TensorFlow · PyTorch", hover: "hover:bg-orange-600 hover:text-white hover:border-orange-600" },
-  { label: "Figma", hover: "hover:bg-fuchsia-600 hover:text-white hover:border-fuchsia-600" },
+  { label: "Next.js", hover: "hover:bg-cyan-500/20 hover:text-cyan-100 hover:border-cyan-400/40" },
+  { label: "TypeScript", hover: "hover:bg-blue-500/20 hover:text-blue-100 hover:border-blue-400/40" },
+  { label: "Kubernetes", hover: "hover:bg-cyan-500/20 hover:text-cyan-100 hover:border-cyan-400/40" },
+  { label: "Terraform", hover: "hover:bg-violet-500/20 hover:text-violet-100 hover:border-violet-400/40" },
+  { label: "PostgreSQL", hover: "hover:bg-sky-500/20 hover:text-sky-100 hover:border-sky-400/40" },
+  { label: "Redis", hover: "hover:bg-red-500/20 hover:text-red-100 hover:border-red-400/40" },
+  { label: "AWS · GCP", hover: "hover:bg-amber-500/20 hover:text-amber-100 hover:border-amber-400/40" },
+  { label: "GraphQL · tRPC", hover: "hover:bg-pink-500/20 hover:text-pink-100 hover:border-pink-400/40" },
+  { label: "OpenTelemetry", hover: "hover:bg-emerald-500/20 hover:text-emerald-100 hover:border-emerald-400/40" },
+  { label: "TensorFlow · PyTorch", hover: "hover:bg-orange-500/20 hover:text-orange-100 hover:border-orange-400/40" },
+  { label: "Figma", hover: "hover:bg-fuchsia-500/20 hover:text-fuchsia-100 hover:border-fuchsia-400/40" },
 ];
 
 export function TechStackSection() {
-  const pillsRef = useRef<(HTMLLIElement | null)[]>([]);
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      pillsRef.current.forEach((el, i) => {
-        if (!el) return;
-        gsap.fromTo(
-          el,
-          { opacity: 0, y: 20, scale: 0.9 },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.5,
-            delay: i * 0.04,
-            ease: "back.out(1.4)",
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: "top 72%",
-              toggleActions: "play none none none",
-            },
-          },
-        );
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <section ref={sectionRef} className="relative bg-slate-50 py-28 md:py-36">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+    <section className="relative bg-slate-950 py-28 md:py-36">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_55%_40%_at_50%_0%,rgba(34,211,238,0.05),transparent)]" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
       <Container className="flex flex-col gap-12 md:gap-14">
         <SectionHeading
-          theme="light"
           eyebrow="Engineering"
           title="Battle-tested stack. Opinionated where it matters."
           subtitle="We choose boring-at-scale primitives — then tune obsessively for latency, resilience, and developer velocity."
         />
+
         <ul className="mx-auto flex max-w-5xl flex-wrap justify-center gap-3 md:gap-4">
           {stack.map((item, i) => (
-            <li
+            <motion.li
               key={item.label}
-              ref={(el) => {
-                pillsRef.current[i] = el;
-              }}
-              style={{ opacity: 0 }}
-              className={`group relative cursor-default overflow-hidden rounded-full border border-slate-300 bg-white px-5 py-2.5 text-xs font-medium uppercase tracking-[0.18em] text-slate-700 shadow-sm transition-all duration-300 ${item.hover} md:text-sm`}
+              initial={{ opacity: 0, y: 16, scale: 0.92 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.35, delay: i * 0.03, ease: "easeOut" }}
+              className={`cursor-default rounded-full border border-white/12 bg-white/[0.04] px-5 py-2.5 text-xs font-medium uppercase tracking-[0.18em] text-slate-300 shadow-none transition-all duration-250 ${item.hover} md:text-sm`}
             >
-              <span className="relative">{item.label}</span>
-            </li>
+              {item.label}
+            </motion.li>
           ))}
         </ul>
       </Container>

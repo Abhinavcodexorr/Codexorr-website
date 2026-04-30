@@ -16,7 +16,7 @@ export function HolographicCard({
   className,
   intensity = 8,
   glowColor = "34,211,238",
-  theme = "light",
+  theme = "dark",
 }: HolographicCardProps) {
   const rawX = useMotionValue(0);
   const rawY = useMotionValue(0);

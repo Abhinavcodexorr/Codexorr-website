@@ -1,17 +1,10 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Container } from "@/components/ui/Container";
 import { HolographicCard } from "@/components/ui/HolographicCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
 
 const blocks = [
   {
@@ -81,34 +74,12 @@ const blocks = [
   },
 ];
 
+const cardReveal = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] as const } },
+};
+
 export function ServicesContent() {
-  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      cardsRef.current.forEach((el, i) => {
-        if (!el) return;
-        gsap.fromTo(
-          el,
-          { opacity: 0, x: i % 2 === 0 ? -40 : 40, y: 20 },
-          {
-            opacity: 1,
-            x: 0,
-            y: 0,
-            duration: 0.65,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: el,
-              start: "top 80%",
-              toggleActions: "play none none none",
-            },
-          },
-        );
-      });
-    });
-    return () => ctx.revert();
-  }, []);
-
   return (
     <div className="flex flex-1 flex-col py-20 md:py-28">
       <Container className="flex flex-col gap-20 md:gap-28">
@@ -119,26 +90,22 @@ export function ServicesContent() {
         />
 
         <div className="flex flex-col gap-16 md:gap-20">
-          {blocks.map((b, i) => (
+          {blocks.map((b) => (
             <section key={b.id} id={b.id} className="scroll-mt-28">
-              <div
-                ref={(el) => {
-                  cardsRef.current[i] = el;
-                }}
-                style={{ opacity: 0 }}
+              <motion.div
+                variants={cardReveal}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, margin: "0px 0px -10% 0px" }}
               >
                 <HolographicCard intensity={5} glowColor={b.glow} className="overflow-hidden">
                   <div className={`absolute inset-0 bg-gradient-to-br ${b.accent}`} />
                   <div className="relative flex flex-col gap-6 p-8 md:p-12">
-                    <span className="text-xs font-semibold uppercase tracking-[0.28em] text-cyan-400/90">
-                      {b.eyebrow}
-                    </span>
+                    <span className="text-xs font-semibold uppercase tracking-[0.28em] text-cyan-400/90">{b.eyebrow}</span>
                     <h2 className="font-heading text-3xl font-semibold tracking-tight text-white md:text-[2.25rem] md:leading-[1.15]">
                       {b.title}
                     </h2>
-                    <p className="max-w-3xl text-base leading-relaxed text-slate-400 md:text-lg">
-                      {b.body}
-                    </p>
+                    <p className="max-w-3xl text-base leading-relaxed text-slate-400 md:text-lg">{b.body}</p>
                     <ul className="mt-4 flex max-w-3xl flex-col gap-4 border-t border-white/[0.08] pt-8">
                       {b.bullets.map((li) => (
                         <li
@@ -152,7 +119,7 @@ export function ServicesContent() {
                     </ul>
                   </div>
                 </HolographicCard>
-              </div>
+              </motion.div>
             </section>
           ))}
         </div>
@@ -163,9 +130,7 @@ export function ServicesContent() {
           viewport={{ once: true }}
           className="flex flex-col items-center gap-6 py-8 text-center"
         >
-          <p className="text-lg text-slate-400">
-            Ready to scope your project with a senior architect?
-          </p>
+          <p className="text-lg text-slate-400">Ready to scope your project with a senior architect?</p>
           <Button href="/contact" className="min-w-[220px]">
             Book a discovery session
           </Button>
