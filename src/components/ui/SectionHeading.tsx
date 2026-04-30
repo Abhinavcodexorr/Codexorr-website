@@ -8,7 +8,7 @@ export function SectionHeading({
   title,
   subtitle,
   align = "center",
-  theme = "dark",
+  theme = "light",
 }: {
   eyebrow: string;
   title: string;
@@ -37,13 +37,13 @@ export function SectionHeading({
               transition={{ repeat: Infinity, duration: 2.5, repeatDelay: 2.5, ease: "easeInOut" }}
             />
             <span className="relative font-mono text-[10px] font-semibold uppercase tracking-[0.3em] text-cyan-400/90">
-              // {eyebrow}
+              {eyebrow}
             </span>
           </div>
         </div>
       ) : (
         <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.3em] text-cyan-600">
-          // {eyebrow}
+          {eyebrow}
         </span>
       )}
 

@@ -12,12 +12,12 @@ import { cn } from "@/lib/cn";
 /* Platform badge colours                                               */
 /* ------------------------------------------------------------------ */
 const platformStyle: Record<string, string> = {
-  iOS:           "bg-sky-500/15 text-sky-300 border-sky-500/25",
-  Android:       "bg-emerald-500/15 text-emerald-300 border-emerald-500/25",
-  "Admin Panel": "bg-violet-500/15 text-violet-300 border-violet-500/25",
-  "Driver App":  "bg-amber-500/15 text-amber-300 border-amber-500/25",
-  "Artist App":  "bg-pink-500/15 text-pink-300 border-pink-500/25",
-  Web:           "bg-cyan-500/15 text-cyan-300 border-cyan-500/25",
+  iOS:           "bg-sky-50 text-sky-700 border-sky-200",
+  Android:       "bg-emerald-50 text-emerald-700 border-emerald-200",
+  "Admin Panel": "bg-violet-50 text-violet-700 border-violet-200",
+  "Driver App":  "bg-amber-50 text-amber-700 border-amber-200",
+  "Artist App":  "bg-pink-50 text-pink-700 border-pink-200",
+  Web:           "bg-cyan-50 text-cyan-700 border-cyan-200",
 };
 
 function PlatformTag({ label }: { label: string }) {
@@ -25,7 +25,7 @@ function PlatformTag({ label }: { label: string }) {
     <span
       className={cn(
         "inline-flex items-center rounded-full border px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.18em]",
-        platformStyle[label] ?? "bg-white/10 text-slate-300 border-white/15",
+        platformStyle[label] ?? "bg-slate-100 text-slate-700 border-slate-200",
       )}
     >
       {label}
@@ -38,9 +38,9 @@ function PlatformTag({ label }: { label: string }) {
 /* ------------------------------------------------------------------ */
 function Stat({ value, label }: { value: string; label: string }) {
   return (
-    <div className="flex flex-col items-center gap-0.5 rounded-xl border border-white/[0.1] bg-white/[0.05] px-4 py-3 backdrop-blur-sm">
-      <span className="font-heading text-xl font-bold text-white">{value}</span>
-      <span className="text-[10px] font-medium uppercase tracking-[0.18em] text-slate-400">{label}</span>
+    <div className="flex flex-col items-center gap-0.5 rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-sm">
+      <span className="font-heading text-xl font-bold text-slate-900">{value}</span>
+      <span className="text-[10px] font-medium uppercase tracking-[0.18em] text-slate-500">{label}</span>
     </div>
   );
 }
@@ -160,8 +160,8 @@ function ProjectCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.6, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
-      className="group relative overflow-hidden rounded-3xl border border-white/[0.1] bg-slate-950/60 shadow-[0_0_60px_-30px_rgba(34,211,238,0.3)] backdrop-blur-xl"
-      style={{ boxShadow: `0 0 60px -30px rgba(${project.accent},0.25)` }}
+      className="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition-shadow duration-300 hover:shadow-[0_24px_60px_-26px_rgba(15,23,42,0.18)]"
+      style={{ ["--card-glow" as never]: `rgba(${project.accent},0.25)` }}
     >
       {/* Image */}
       <div className={cn("relative w-full overflow-hidden", project.featured ? "aspect-[4/3] sm:aspect-[16/9] lg:aspect-[21/9]" : "aspect-[4/3] sm:aspect-[16/10]")}>
@@ -173,11 +173,9 @@ function ProjectCard({
           className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
           priority={index < 2}
         />
-        {/* gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/35 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-slate-950/10 to-transparent" />
 
-        {/* Sector pill — top left */}
-        <div className="absolute left-5 top-5 inline-flex items-center rounded-full border border-white/15 bg-slate-950/60 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-300/90 backdrop-blur-md">
+        <div className="absolute left-4 top-4 inline-flex items-center rounded-full border border-white/40 bg-white/85 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-700 backdrop-blur-md sm:left-5 sm:top-5">
           {project.sector}
         </div>
       </div>
@@ -187,10 +185,8 @@ function ProjectCard({
         {/* Title + live link */}
         <div className="flex items-start justify-between gap-4">
           <div className="flex flex-col gap-1">
-            <h2 className="font-heading text-xl font-semibold text-white md:text-2xl">
-              {project.title}
-            </h2>
-            <p className="text-sm text-slate-400">{project.tagline}</p>
+            <h2 className="font-heading text-xl font-semibold text-slate-900 md:text-2xl">{project.title}</h2>
+            <p className="text-sm text-slate-500">{project.tagline}</p>
           </div>
           {isExternal ? (
             <a
@@ -198,7 +194,7 @@ function ProjectCard({
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`Open ${project.title}`}
-              className="flex-shrink-0 rounded-full border border-white/15 bg-white/[0.04] p-2.5 text-slate-300 transition-all duration-300 hover:border-cyan-400/50 hover:bg-cyan-400/10 hover:text-cyan-300"
+              className="flex-shrink-0 rounded-full border border-slate-200 bg-white p-2.5 text-slate-600 shadow-sm transition-all duration-300 hover:border-cyan-400/50 hover:text-cyan-700"
             >
               <ExternalLink className="h-4 w-4" aria-hidden />
             </a>
@@ -206,15 +202,14 @@ function ProjectCard({
             <Link
               href={project.href}
               aria-label={`Learn more about ${project.title}`}
-              className="flex-shrink-0 rounded-full border border-white/15 bg-white/[0.04] p-2.5 text-slate-300 transition-all duration-300 hover:border-cyan-400/50 hover:bg-cyan-400/10 hover:text-cyan-300"
+              className="flex-shrink-0 rounded-full border border-slate-200 bg-white p-2.5 text-slate-600 shadow-sm transition-all duration-300 hover:border-cyan-400/50 hover:text-cyan-700"
             >
               <ArrowUpRight className="h-4 w-4" aria-hidden />
             </Link>
           )}
         </div>
 
-        {/* Description */}
-        <p className="text-sm leading-relaxed text-slate-400 md:text-[15px]">{project.summary}</p>
+        <p className="text-sm leading-relaxed text-slate-600 md:text-[15px]">{project.summary}</p>
 
         {/* Stats — only for featured / projects with stats */}
         {project.stats && (
@@ -226,7 +221,7 @@ function ProjectCard({
         )}
 
         {/* Platform tags + CTA */}
-        <div className="flex flex-wrap items-center justify-between gap-4 border-t border-white/[0.07] pt-4">
+        <div className="flex flex-wrap items-center justify-between gap-4 border-t border-slate-200 pt-4">
           <div className="flex flex-wrap gap-2">
             {project.platforms.map((p) => (
               <PlatformTag key={p} label={p} />
@@ -238,7 +233,7 @@ function ProjectCard({
               href={project.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300 transition-colors hover:text-white"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-cyan-700 transition-colors hover:text-cyan-900"
             >
               {project.liveLabel}
               <ExternalLink className="h-3.5 w-3.5" aria-hidden />
@@ -246,7 +241,7 @@ function ProjectCard({
           ) : (
             <Link
               href={project.href}
-              className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300 transition-colors hover:text-white"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-cyan-700 transition-colors hover:text-cyan-900"
             >
               {project.liveLabel}
               <ArrowUpRight className="h-3.5 w-3.5" aria-hidden />
@@ -279,7 +274,7 @@ export function PortfolioGallery() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="grid grid-cols-2 gap-3 rounded-2xl border border-white/[0.08] bg-white/[0.025] p-4 sm:grid-cols-4 sm:gap-4 sm:p-6"
+          className="grid grid-cols-2 gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:grid-cols-4 sm:gap-4 sm:p-6"
         >
           {[
             { value: "100+", label: "Projects shipped" },
@@ -288,7 +283,7 @@ export function PortfolioGallery() {
             { value: "110k+", label: "App downloads" },
           ].map((s) => (
             <div key={s.label} className="flex flex-col items-center gap-1 text-center">
-              <span className="font-heading text-2xl font-bold text-white md:text-3xl">{s.value}</span>
+              <span className="font-heading text-2xl font-bold text-slate-900 md:text-3xl">{s.value}</span>
               <span className="text-xs font-medium uppercase tracking-[0.18em] text-slate-500">{s.label}</span>
             </div>
           ))}
@@ -312,14 +307,12 @@ export function PortfolioGallery() {
           transition={{ duration: 0.5 }}
           className="flex flex-col items-center gap-4 text-center"
         >
-          <p className="text-sm text-slate-400">
-            Have an idea for an app, platform, or digital product?
-          </p>
+          <p className="text-sm text-slate-600">Have an idea for an app, platform, or digital product?</p>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-6 py-3 text-sm font-semibold text-slate-100 transition-all duration-300 hover:border-cyan-400/40 hover:bg-white/[0.07]"
+            className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-800 shadow-sm transition-all duration-300 hover:border-cyan-400/50 hover:text-cyan-700"
           >
-            <Star className="h-4 w-4 text-cyan-400" aria-hidden />
+            <Star className="h-4 w-4 text-cyan-500" aria-hidden />
             Start your project
           </Link>
         </motion.div>

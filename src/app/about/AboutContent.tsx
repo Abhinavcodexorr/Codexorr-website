@@ -50,9 +50,9 @@ export function AboutContent() {
             transition={{ duration: 0.5 }}
           >
             <HolographicCard intensity={6} glowColor="34,211,238">
-              <div className="relative flex flex-col gap-5 p-8 md:p-10">
-                <h2 className="font-heading text-2xl font-semibold text-white md:text-3xl">Mission</h2>
-                <p className="text-base leading-relaxed text-slate-400 md:text-lg">
+              <div className="relative flex flex-col gap-5 p-6 md:p-10">
+                <h2 className="font-heading text-2xl font-semibold text-slate-900 md:text-3xl">Mission</h2>
+                <p className="text-base leading-relaxed text-slate-600 md:text-lg">
                   Empower organizations to launch differentiated digital products — with reliability, accessibility, and measurable
                   outcomes baked into every release.
                 </p>
@@ -67,9 +67,9 @@ export function AboutContent() {
             transition={{ duration: 0.5, delay: 0.07 }}
           >
             <HolographicCard intensity={6} glowColor="167,139,250">
-              <div className="relative flex flex-col gap-5 p-8 md:p-10">
-                <h2 className="font-heading text-2xl font-semibold text-white md:text-3xl">Vision</h2>
-                <p className="text-base leading-relaxed text-slate-400 md:text-lg">
+              <div className="relative flex flex-col gap-5 p-6 md:p-10">
+                <h2 className="font-heading text-2xl font-semibold text-slate-900 md:text-3xl">Vision</h2>
+                <p className="text-base leading-relaxed text-slate-600 md:text-lg">
                   Become the default engineering partner for teams who ship AI-native experiences without sacrificing trust —
                   security, observability, and craft on day one.
                 </p>
@@ -106,15 +106,17 @@ export function AboutContent() {
                   transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: i * 0.05 }}
                 >
                   <div className="flex items-start gap-4 md:block">
-                    <span className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-cyan-400/70 bg-slate-950 shadow-[0_0_20px_rgba(34,211,238,0.5)] md:mx-auto" />
-                    <span className="font-heading text-sm font-semibold uppercase tracking-[0.22em] text-cyan-300 md:text-center">
+                    <span className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-cyan-400/70 bg-white shadow-[0_0_20px_rgba(34,211,238,0.4)] md:mx-auto">
+                      <span className="h-2 w-2 rounded-full bg-cyan-500" />
+                    </span>
+                    <span className="font-heading text-sm font-semibold uppercase tracking-[0.22em] text-cyan-700 md:text-center">
                       {m.year}
                     </span>
                   </div>
                   <HolographicCard intensity={5} glowColor={m.glow}>
-                    <div className="relative flex flex-col gap-2 p-6 md:p-8">
-                      <h3 className="font-heading text-lg font-semibold text-white md:text-xl">{m.title}</h3>
-                      <p className="text-sm leading-relaxed text-slate-400 md:text-[15px]">{m.body}</p>
+                    <div className="relative flex flex-col gap-2 p-5 md:p-8">
+                      <h3 className="font-heading text-lg font-semibold text-slate-900 md:text-xl">{m.title}</h3>
+                      <p className="text-sm leading-relaxed text-slate-600 md:text-[15px]">{m.body}</p>
                     </div>
                   </HolographicCard>
                 </motion.li>
