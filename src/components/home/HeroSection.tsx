@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { ArrowRight, Radio } from "lucide-react";
 import { Parallax } from "@/components/animations/Parallax";
+import { HeroInteractiveVisual } from "@/components/home/HeroInteractiveVisual";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 
@@ -20,38 +21,24 @@ const LazyHero3DPanel = dynamic(
     ssr: false,
     loading: () => (
       <div
-        className="min-h-[300px] w-full rounded-[2rem] bg-gradient-to-br from-cyan-50/90 via-emerald-50/50 to-violet-50/65 ring-1 ring-emerald-200/35 lg:min-h-[400px]"
+        className="min-h-[280px] w-full rounded-[1.25rem] bg-gradient-to-br from-sky-100/95 via-emerald-50/70 to-violet-100/80 ring-1 ring-cyan-100/55 sm:min-h-[300px] lg:min-h-[min(420px,52vh)]"
         aria-hidden
       />
     ),
   },
 );
 
-/** Mobile/static “fake 3D” — gradients + soft CSS motion (matches light premium UI). */
-function HeroGraphicFallback() {
-  return (
-    <div
-      aria-hidden
-      className="relative mx-auto aspect-[5/4] max-h-[300px] w-full max-w-md overflow-visible sm:aspect-square sm:max-h-[340px]"
-    >
-      <div className="hero-fake-float absolute inset-[8%] rounded-[42%_58%_52%_48%_/46%_42%_58%_54%] bg-gradient-to-br from-cyan-300/55 via-emerald-200/50 to-violet-300/50 blur-[2px]" />
-      <div className="hero-fake-float-delayed hero-fake-float absolute inset-[18%] rounded-[54%_46%_48%_52%_/55%_48%_45%_55%] bg-gradient-to-tr from-teal-200/45 via-white/22 to-emerald-200/40 blur-md" />
-      <div className="absolute inset-0 rounded-[2rem] bg-[radial-gradient(ellipse_at_42%_38%,rgba(255,255,255,0.55),transparent_68%)]" />
-    </div>
-  );
-}
-
 const staggerChild: Variants = {
   hidden: { opacity: 0, y: 22 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] as const },
+                transition: { duration: 0.62, ease: [0.22, 1, 0.36, 1] as const },
   },
 };
 const container: Variants = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.07, delayChildren: 0.12 } },
+  show: { transition: { staggerChildren: 0.09, delayChildren: 0.16 } },
 };
 
 export function HeroSection() {
@@ -107,7 +94,7 @@ export function HeroSection() {
               variants={container}
               initial="hidden"
               animate="show"
-              className="flex min-w-0 flex-col items-center gap-5 text-center sm:gap-6 lg:col-span-6 lg:items-start lg:text-left xl:col-span-6"
+              className="flex min-w-0 flex-col items-center gap-6 text-center sm:gap-7 md:gap-8 lg:col-span-6 lg:items-start lg:text-left xl:col-span-6"
             >
               <motion.div variants={staggerChild} className="w-full min-w-0">
                 <div className="relative inline-flex max-w-full flex-wrap items-center gap-2 rounded-full border border-emerald-200/55 bg-white/85 px-4 py-2 shadow-sm backdrop-blur-sm ring-1 ring-cyan-100/70 lg:mx-0 lg:ml-px sm:px-5 mx-auto justify-center lg:justify-start">
@@ -120,7 +107,7 @@ export function HeroSection() {
 
               <motion.h1
                 variants={staggerChild}
-                className="font-heading flex w-full min-w-0 flex-col gap-2 text-[1.65rem] font-semibold tracking-tight text-slate-900 sm:gap-2.5 sm:text-4xl md:gap-3 md:text-5xl xl:text-[3.55rem] xl:leading-[1.32] lg:leading-[1.36] md:leading-[1.38] leading-normal"
+                className="font-heading flex w-full min-w-0 flex-col gap-2.5 text-[1.7rem] font-semibold tracking-[-0.02em] text-slate-900 sm:gap-3 sm:text-4xl md:gap-3.5 md:text-5xl xl:text-[3.6rem] xl:leading-[1.28] lg:leading-[1.32] md:leading-[1.34] leading-normal"
               >
                 <span className="block pb-[0.06em] text-balance lg:max-w-[14ch]">Intelligent systems.</span>
                 <span className="gradient-text-animated block pb-[0.1em] text-balance lg:max-w-[16ch]">Built for global scale.</span>
@@ -128,7 +115,7 @@ export function HeroSection() {
 
               <motion.p
                 variants={staggerChild}
-                className="max-w-xl min-w-0 text-pretty text-sm leading-relaxed text-slate-600 sm:text-base md:text-[1.0625rem] md:leading-relaxed"
+                className="max-w-xl min-w-0 text-pretty text-sm leading-[1.65] text-slate-600 sm:text-base md:text-[1.07rem] md:leading-[1.68]"
               >
                 CodeXorr engineers resilient cloud platforms, immersive product UX, and AI workflows that feel inevitable —
                 sharp architecture, obsessive craft, and measurable outcomes.
@@ -147,15 +134,16 @@ export function HeroSection() {
               </motion.div>
             </motion.div>
 
-            <div className="relative order-first min-h-[240px] w-full lg:order-none lg:col-span-6 xl:col-span-5 xl:col-start-8 lg:justify-self-end">
-              <div className="rounded-[2rem] border border-emerald-100/50 bg-white/40 p-5 shadow-[0_36px_100px_-48px_rgba(15,23,42,0.22)] backdrop-blur-md backdrop-saturate-150 ring-1 ring-slate-200/45 sm:p-6 lg:p-7">
-                <div className="md:hidden">
-                  <HeroGraphicFallback />
-                </div>
-                <div className="hidden md:block [&_[data-hero-canvas]]:aspect-square [&_[data-hero-canvas]]:lg:aspect-auto lg:[&_[data-hero-canvas]]:min-h-[min(420px,52vh)]">
+            <div className="relative order-first w-full min-h-[280px] sm:min-h-[300px] lg:order-none lg:col-span-6 lg:min-h-0 xl:col-span-5 xl:col-start-8 lg:justify-self-end">
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -inset-[10%] z-0 rounded-[2.75rem] bg-[radial-gradient(ellipse_72%_62%_at_50%_48%,rgba(56,189,248,0.22),transparent_58%),radial-gradient(ellipse_58%_52%_at_70%_62%,rgba(167,139,250,0.18),transparent_55%)] opacity-90 blur-2xl"
+              />
+              <HeroInteractiveVisual className="relative z-10">
+                <div className="rounded-[2rem] border border-cyan-100/40 bg-white/45 p-5 shadow-[0_40px_110px_-42px_rgba(15,23,42,0.2),0_0_0_1px_rgba(255,255,255,0.55)_inset] backdrop-blur-xl backdrop-saturate-150 ring-1 ring-slate-200/40 sm:p-6 lg:p-7">
                   <LazyHero3DPanel className="rounded-[1.25rem]" />
                 </div>
-              </div>
+              </HeroInteractiveVisual>
             </div>
           </div>
         </Container>

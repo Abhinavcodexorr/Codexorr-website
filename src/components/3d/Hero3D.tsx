@@ -5,9 +5,9 @@ import { useEffect, useRef, useState } from "react";
 import type { Mesh } from "three";
 
 /**
- * Single mesh · soft ambient fill. Fast continuous spin (Y + slight X/Z tumble) + gentle float.
+ * Single icosahedron · ambient only · smooth premium motion (slow yaw, sin float, soft “breath”).
  */
-function FloatingForm({ reducedMotion }: { reducedMotion: boolean }) {
+function FloatingCore({ reducedMotion }: { reducedMotion: boolean }) {
   const ref = useRef<Mesh>(null);
 
   useFrame((state, delta) => {
@@ -16,33 +16,31 @@ function FloatingForm({ reducedMotion }: { reducedMotion: boolean }) {
     const t = state.clock.elapsedTime;
 
     if (reducedMotion) {
-      mesh.rotation.y += delta * 0.04;
+      mesh.rotation.y += delta * 0.028;
+      mesh.position.y = Math.sin(t * 0.18) * 0.04;
       return;
     }
 
-    /* Fast main rotation + secondary tumble (reads like a turning globe) */
-    mesh.rotation.y += delta * 0.22;
-    mesh.rotation.x += delta * 0.072;
-    mesh.rotation.z += delta * 0.034;
+    mesh.rotation.y += delta * 0.09;
+    mesh.rotation.x = Math.sin(t * 0.11) * 0.065;
+    mesh.rotation.z = Math.sin(t * 0.085 + 1.1) * 0.032;
 
-    const breath = Math.sin(t * 0.21);
-    const swayX = Math.sin(t * 0.13 + 0.75);
-    mesh.position.y = breath * 0.11;
-    mesh.position.x = swayX * 0.034;
+    mesh.position.y = Math.sin(t * 0.42) * 0.1;
+    mesh.position.x = Math.sin(t * 0.17) * 0.028;
 
-    const s = 1 + Math.sin(t * 0.145) * 0.017;
+    const s = 1 + Math.sin(t * 0.22) * 0.022;
     mesh.scale.setScalar(s);
   });
 
   return (
     <mesh ref={ref}>
-      <torusKnotGeometry args={[0.84, 0.24, 32, 10]} />
+      <icosahedronGeometry args={[0.95, 2]} />
       <meshStandardMaterial
-        color="#73eecb"
-        emissive="#9298f8"
-        emissiveIntensity={0.4}
-        roughness={0.52}
-        metalness={0.12}
+        color="#5ee1d6"
+        emissive="#8b86f0"
+        emissiveIntensity={0.36}
+        roughness={0.48}
+        metalness={0.14}
       />
     </mesh>
   );
@@ -51,13 +49,12 @@ function FloatingForm({ reducedMotion }: { reducedMotion: boolean }) {
 function SceneBody({ reducedMotion }: { reducedMotion: boolean }) {
   return (
     <>
-      <ambientLight intensity={2.05} />
-      <FloatingForm reducedMotion={reducedMotion} />
+      <ambientLight intensity={2.25} />
+      <FloatingCore reducedMotion={reducedMotion} />
     </>
   );
 }
 
-/** Default export — import with dynamic(() => import('./Hero3D'), { ssr: false }). */
 export default function Hero3D() {
   const [reducedMotion, setReducedMotion] = useState(false);
 
@@ -70,9 +67,13 @@ export default function Hero3D() {
   }, []);
 
   return (
-    <div className="relative h-full min-h-[280px] w-full lg:min-h-[400px]" data-hero-canvas="">
+    <div
+      className="relative w-full min-h-[inherit] aspect-square max-w-full lg:aspect-auto lg:min-h-[min(420px,52vh)]"
+      data-hero-canvas=""
+    >
       <Canvas
-        camera={{ position: [0, 0, 5.2], fov: 42 }}
+        className="!absolute inset-0 h-full !w-full touch-none"
+        camera={{ position: [0, 0, 5.1], fov: 40 }}
         gl={{
           antialias: false,
           alpha: true,

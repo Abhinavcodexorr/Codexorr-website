@@ -1,14 +1,15 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { Suspense, useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { HeroPremiumFloatCSS } from "@/components/home/HeroPremiumFloatCSS";
 import { cn } from "@/lib/cn";
 
 function Hero3DPlaceholder() {
   return (
     <div
       aria-hidden
-      className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-teal-100/45 via-cyan-50/80 to-violet-100/45 ring-1 ring-teal-200/40"
+      className="min-h-[inherit] w-full rounded-[inherit] bg-gradient-to-br from-sky-50/95 via-cyan-50/85 to-violet-50/78 ring-1 ring-cyan-100/50"
     />
   );
 }
@@ -18,53 +19,90 @@ const Hero3DCanvas = dynamic(() => import("@/components/3d/Hero3D"), {
   loading: Hero3DPlaceholder,
 });
 
-/** Desktop lg+: loads WebGL after hero enters viewport. */
+const GL_QUERY = "(min-width: 1024px)";
+
+/** Below lg: CSS “live orb” only (fast, no Three). lg+: lazy WebGL, one mesh, ambient only. */
 export function LazyHero3D({ className }: { className?: string }) {
   const rootRef = useRef<HTMLDivElement>(null);
-  const [desktop, setDesktop] = useState(false);
-  const [shouldLoad, setShouldLoad] = useState(false);
+  const [tier, setTier] = useState<"css" | "gl">("css");
+  const [shouldLoadGl, setShouldLoadGl] = useState(false);
 
-  useEffect(() => {
-    const mq = window.matchMedia("(min-width: 768px)");
-    const apply = () => setDesktop(mq.matches);
-    apply();
-    mq.addEventListener("change", apply);
-    return () => mq.removeEventListener("change", apply);
+  useLayoutEffect(() => {
+    const mq = window.matchMedia(GL_QUERY);
+    const sync = () => setTier(mq.matches ? "gl" : "css");
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
   }, []);
 
   useEffect(() => {
-    if (!desktop || !rootRef.current) return;
+    if (tier !== "gl") {
+      setShouldLoadGl(false);
+      return;
+    }
     const node = rootRef.current;
+    if (!node) return;
+
+    const activate = () => setShouldLoadGl(true);
+
+    const nearViewport = () => {
+      const rect = node.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const edge = 240;
+      return rect.bottom > -edge && rect.top < vh + edge;
+    };
+
+    if (nearViewport()) {
+      activate();
+      return;
+    }
+
     const io = new IntersectionObserver(
       (entries) => {
         if (entries.some((e) => e.isIntersecting)) {
-          setShouldLoad(true);
+          activate();
           io.disconnect();
         }
       },
-      { rootMargin: "100px 0px 120px 0px", threshold: 0 },
+      { rootMargin: "240px 0px", threshold: 0 },
     );
     io.observe(node);
     return () => io.disconnect();
-  }, [desktop]);
+  }, [tier]);
 
-  if (!desktop) {
-    return null;
-  }
+  const chrome = (
+    <div
+      aria-hidden
+      className="pointer-events-none absolute inset-0 rounded-[inherit] shadow-[inset_0_0_72px_rgba(255,255,255,0.22)]"
+    />
+  );
 
   return (
-    <div ref={rootRef} className={cn("relative isolate h-full min-h-[300px] w-full overflow-hidden lg:min-h-[400px]", className)}>
-      {shouldLoad ? (
-        <Suspense fallback={<Hero3DPlaceholder />}>
-          <Hero3DCanvas />
-        </Suspense>
-      ) : (
-        <Hero3DPlaceholder />
+    <div
+      ref={rootRef}
+      className={cn(
+        "relative isolate w-full overflow-hidden rounded-[inherit] min-h-[260px] sm:min-h-[300px] lg:min-h-[min(420px,52vh)]",
+        className,
       )}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 rounded-[inherit] shadow-[inset_0_0_80px_rgba(255,255,255,0.72)]"
-      />
+    >
+      {tier === "css" ? (
+        <>
+          <HeroPremiumFloatCSS className="rounded-[inherit]" />
+          {chrome}
+        </>
+      ) : shouldLoadGl ? (
+        <>
+          <Suspense fallback={<Hero3DPlaceholder />}>
+            <Hero3DCanvas />
+          </Suspense>
+          {chrome}
+        </>
+      ) : (
+        <>
+          <Hero3DPlaceholder />
+          {chrome}
+        </>
+      )}
     </div>
   );
 }

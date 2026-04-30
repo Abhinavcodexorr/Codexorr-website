@@ -88,6 +88,29 @@ body {
   50% { transform: translate(-4%, 3%) rotate(-2deg) scale(1.045); }
 }
 
+/* Lightweight hero orb (CSS “fake 3D” — infra / alive motion) */
+@keyframes hero-premium-orb-live {
+  0%, 100% {
+    transform: translate3d(0, -1.25%, 0) rotateY(-10deg) rotateX(9deg) scale(1);
+  }
+  40% {
+    transform: translate3d(2%, 2.75%, 0) rotateY(12deg) rotateX(-8deg) scale(1.03);
+  }
+  72% {
+    transform: translate3d(-1.5%, 1.75%, 0) rotateY(-6deg) rotateX(11deg) scale(1.014);
+  }
+}
+
+@keyframes hero-premium-sheen {
+  0%, 100% { opacity: 0.88; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.042); }
+}
+
+@keyframes hero-premium-grid-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .hero-fake-float {
     animation: hero-fake-drift 18s ease-in-out infinite;
@@ -105,6 +128,18 @@ body {
   .hero-scroll-nudge-soft {
     animation: hero-scroll-nudge-soft 2.75s ease-in-out infinite;
   }
+  .hero-premium-orb-live {
+    transform-style: preserve-3d;
+    animation: hero-premium-orb-live 28s cubic-bezier(0.42, 0, 0.58, 1) infinite;
+  }
+  .hero-premium-sheen-shell {
+    transform-origin: center center;
+    animation: hero-premium-sheen 16s ease-in-out infinite alternate;
+  }
+  .hero-premium-grid-spin {
+    transform-origin: 50% 50%;
+    animation: hero-premium-grid-spin 88s linear infinite;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -112,7 +147,10 @@ body {
   .mesh-blob-b,
   .hero-scroll-nudge-soft,
   .hero-fake-float,
-  .hero-fake-float-delayed {
+  .hero-fake-float-delayed,
+  .hero-premium-orb-live,
+  .hero-premium-sheen-shell,
+  .hero-premium-grid-spin {
     animation: none !important;
   }
 }
@@ -133,8 +171,16 @@ body {
   padding-bottom: 0.42em;
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
-  background: linear-gradient(90deg, #0d9488 0%, #0891b2 26%, #10b981 48%, #7c3aed 72%, #0d9488 100%);
-  background-size: 300% 100%;
+  background: linear-gradient(
+    92deg,
+    #0d9488 0%,
+    #0e7490 18%,
+    #2563eb 38%,
+    #10b981 56%,
+    #6d28d9 78%,
+    #0891b2 100%
+  );
+  background-size: 320% 100%;
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
@@ -157,7 +203,7 @@ body {
   -webkit-box-decoration-break: clone;
 }
 @media (prefers-reduced-motion: no-preference) {
-  .gradient-text-animated { animation: gradient-flow 12s linear infinite; }
+  .gradient-text-animated { animation: gradient-flow 16s ease-in-out infinite; }
 }
 
 .text-glow-cyan {
