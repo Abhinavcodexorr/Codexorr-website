@@ -17,8 +17,8 @@ export function ContactContent() {
   }
 
   return (
-    <div className="flex flex-1 flex-col py-20 md:py-28">
-      <Container className="flex flex-col gap-14 md:gap-16">
+    <div className="flex flex-1 flex-col py-12 md:py-20 lg:py-28">
+      <Container className="flex flex-col gap-10 md:gap-14 lg:gap-16">
         <SectionHeading
           eyebrow="Contact"
           title="Tell us what you're building — we'll meet you with clarity."
@@ -33,7 +33,7 @@ export function ContactContent() {
             transition={{ duration: 0.45 }}
           >
             <HolographicCard intensity={5} glowColor="34,211,238">
-              <div className="relative p-8 md:p-10">
+              <div className="relative p-5 sm:p-8 md:p-10">
                 {sent ? (
                   <div className="flex flex-col items-center gap-6 py-10 text-center">
                     <CheckCircle2 className="h-16 w-16 text-emerald-400" aria-hidden />
@@ -107,7 +107,7 @@ export function ContactContent() {
             className="flex flex-col gap-8"
           >
             <HolographicCard intensity={5} glowColor="167,139,250">
-              <div className="relative flex flex-col gap-6 p-8 md:p-10">
+              <div className="relative flex flex-col gap-5 p-5 sm:p-8 md:p-10">
                 <h2 className="font-heading text-lg font-semibold text-white md:text-xl">
                   Studio coordinates
                 </h2>

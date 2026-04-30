@@ -20,12 +20,12 @@ const stack = [
 
 export function TechStackSection() {
   return (
-    <section className="relative bg-slate-950 py-28 md:py-36">
+    <section className="relative bg-slate-950 py-14 md:py-24 lg:py-32">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_55%_40%_at_50%_0%,rgba(34,211,238,0.05),transparent)]" />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
-      <Container className="flex flex-col gap-12 md:gap-14">
+      <Container className="flex flex-col gap-10 md:gap-14">
         <SectionHeading
           eyebrow="Engineering"
           title="Battle-tested stack. Opinionated where it matters."
@@ -40,7 +40,7 @@ export function TechStackSection() {
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.35, delay: i * 0.03, ease: "easeOut" }}
-              className={`cursor-default rounded-full border border-white/12 bg-white/[0.04] px-5 py-2.5 text-xs font-medium uppercase tracking-[0.18em] text-slate-300 shadow-none transition-all duration-250 ${item.hover} md:text-sm`}
+              className={`cursor-default rounded-full border border-white/12 bg-white/[0.04] px-4 py-2 text-[11px] font-medium uppercase tracking-[0.15em] text-slate-300 shadow-none transition-all duration-250 ${item.hover} md:px-5 md:py-2.5 md:text-xs md:tracking-[0.18em]`}
             >
               {item.label}
             </motion.li>

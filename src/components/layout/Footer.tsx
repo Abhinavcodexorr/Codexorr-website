@@ -5,10 +5,10 @@ import { Container } from "@/components/ui/Container";
 
 export function Footer() {
   return (
-    <footer className="relative mt-auto bg-slate-950 py-16 md:py-20">
+    <footer className="relative mt-auto bg-slate-950 py-12 md:py-16 lg:py-20">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
 
-      <Container className="relative flex flex-col gap-12 md:flex-row md:items-start md:justify-between md:gap-16">
+      <Container className="relative flex flex-col gap-10 md:flex-row md:items-start md:justify-between md:gap-16">
         <div className="mx-auto flex max-w-md flex-col items-center text-center md:mx-0 md:items-start md:text-left">
           <Link href="/"
             className="inline-flex items-center gap-2.5 rounded-lg outline-none ring-offset-2 ring-offset-slate-950 focus-visible:ring-2 focus-visible:ring-cyan-400/70">
@@ -55,7 +55,7 @@ export function Footer() {
         </div>
       </Container>
 
-      <Container className="relative mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/[0.06] pt-8 text-center text-xs text-slate-500 md:flex-row md:text-left">
+      <Container className="relative mt-10 flex flex-col items-center justify-between gap-3 border-t border-white/[0.06] pt-6 text-center text-xs text-slate-500 md:flex-row md:text-left">
         <p>© {new Date().getFullYear()} CodeXorr. All rights reserved.</p>
         <div className="flex flex-wrap justify-center gap-6">
           <Link href="/contact" className="transition-colors hover:text-slate-300">Privacy</Link>

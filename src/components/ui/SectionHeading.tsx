@@ -20,18 +20,16 @@ export function SectionHeading({
     <motion.div
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] as const }}
       className={cn(
-        "flex max-w-3xl flex-col gap-5",
+        "flex w-full min-w-0 max-w-3xl flex-col gap-4",
         align === "center" ? "mx-auto text-center" : "text-left",
       )}
     >
-      {/* Eyebrow — animated shimmer pill on dark, plain on light */}
       {theme === "dark" ? (
         <div className={cn("flex", align === "center" ? "justify-center" : "justify-start")}>
           <div className="relative inline-flex overflow-hidden rounded-full border border-cyan-400/25 bg-cyan-500/[0.08] px-4 py-1.5 backdrop-blur-sm">
-            {/* shimmer sweep */}
             <motion.span
               aria-hidden
               className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent"
@@ -49,10 +47,9 @@ export function SectionHeading({
         </span>
       )}
 
-      {/* Title */}
       <h2
         className={cn(
-          "font-heading text-3xl font-semibold tracking-tight sm:text-4xl md:text-[2.75rem] md:leading-[1.2]",
+          "font-heading text-2xl font-semibold tracking-tight sm:text-3xl md:text-[2.75rem] md:leading-[1.2]",
           theme === "light" ? "text-slate-900" : "text-slate-50",
           theme === "dark" && "text-glow-sm",
         )}
@@ -60,17 +57,15 @@ export function SectionHeading({
         {title}
       </h2>
 
-      {/* Subtitle */}
       <p
         className={cn(
-          "text-base leading-relaxed md:text-lg",
+          "text-sm leading-relaxed sm:text-base md:text-lg",
           theme === "light" ? "text-slate-600" : "text-slate-400",
         )}
       >
         {subtitle}
       </p>
 
-      {/* Accent line under heading on dark sections */}
       {theme === "dark" && align !== "center" && (
         <div className="h-px w-16 bg-gradient-to-r from-cyan-400/70 to-transparent" />
       )}

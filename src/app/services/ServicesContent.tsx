@@ -81,15 +81,15 @@ const cardReveal = {
 
 export function ServicesContent() {
   return (
-    <div className="flex flex-1 flex-col py-20 md:py-28">
-      <Container className="flex flex-col gap-20 md:gap-28">
+    <div className="flex flex-1 flex-col py-12 md:py-20 lg:py-28">
+      <Container className="flex flex-col gap-12 md:gap-20 lg:gap-28">
         <SectionHeading
           eyebrow="Services"
           title="Capability depth — without the enterprise drag."
           subtitle="Each practice area pairs principal engineers with design partners so strategy, architecture, and UX evolve together."
         />
 
-        <div className="flex flex-col gap-16 md:gap-20">
+        <div className="flex flex-col gap-10 md:gap-16 lg:gap-20">
           {blocks.map((b) => (
             <section key={b.id} id={b.id} className="scroll-mt-28">
               <motion.div
@@ -100,9 +100,9 @@ export function ServicesContent() {
               >
                 <HolographicCard intensity={5} glowColor={b.glow} className="overflow-hidden">
                   <div className={`absolute inset-0 bg-gradient-to-br ${b.accent}`} />
-                  <div className="relative flex flex-col gap-6 p-8 md:p-12">
+                  <div className="relative flex flex-col gap-5 p-5 sm:p-8 md:p-12">
                     <span className="text-xs font-semibold uppercase tracking-[0.28em] text-cyan-400/90">{b.eyebrow}</span>
-                    <h2 className="font-heading text-3xl font-semibold tracking-tight text-white md:text-[2.25rem] md:leading-[1.15]">
+                    <h2 className="font-heading text-2xl font-semibold tracking-tight text-white sm:text-3xl md:text-[2.25rem] md:leading-[1.15]">
                       {b.title}
                     </h2>
                     <p className="max-w-3xl text-base leading-relaxed text-slate-400 md:text-lg">{b.body}</p>
@@ -131,7 +131,7 @@ export function ServicesContent() {
           className="flex flex-col items-center gap-6 py-8 text-center"
         >
           <p className="text-lg text-slate-400">Ready to scope your project with a senior architect?</p>
-          <Button href="/contact" className="min-w-[220px]">
+          <Button href="/contact">
             Book a discovery session
           </Button>
         </motion.div>

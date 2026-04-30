@@ -34,15 +34,15 @@ const milestones = [
 
 export function AboutContent() {
   return (
-    <div className="flex flex-1 flex-col py-20 md:py-28">
-      <Container className="flex flex-col gap-16 md:gap-24">
+    <div className="flex flex-1 flex-col py-12 md:py-20 lg:py-28">
+      <Container className="flex flex-col gap-12 md:gap-16 lg:gap-24">
         <SectionHeading
           eyebrow="Company"
           title="Precision engineering for ambitious roadmaps."
           subtitle="We're not a volume shop — each engagement gets architects who've shipped under pressure and refuse to hide behind tickets."
         />
 
-        <div className="grid gap-12 lg:grid-cols-2 lg:items-start lg:gap-16">
+        <div className="grid gap-8 lg:grid-cols-2 lg:items-start lg:gap-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

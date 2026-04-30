@@ -188,7 +188,6 @@ export function NeuralNetworkHero() {
         gl={{ antialias: false, alpha: true, powerPreference: "high-performance" }}
         dpr={[1, 1.25]}
       >
-        <color attach="background" args={["transparent"]} />
         <NeuralScene />
       </Canvas>
     </div>

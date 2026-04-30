@@ -164,7 +164,7 @@ function ProjectCard({
       style={{ boxShadow: `0 0 60px -30px rgba(${project.accent},0.25)` }}
     >
       {/* Image */}
-      <div className={cn("relative w-full overflow-hidden", project.featured ? "aspect-[21/9]" : "aspect-[16/10]")}>
+      <div className={cn("relative w-full overflow-hidden", project.featured ? "aspect-[4/3] sm:aspect-[16/9] lg:aspect-[21/9]" : "aspect-[4/3] sm:aspect-[16/10]")}>
         <Image
           src={project.image}
           alt={project.title}
@@ -183,7 +183,7 @@ function ProjectCard({
       </div>
 
       {/* Body */}
-      <div className="flex flex-col gap-5 p-6 md:p-8">
+      <div className="flex flex-col gap-4 p-4 md:p-8 sm:p-6">
         {/* Title + live link */}
         <div className="flex items-start justify-between gap-4">
           <div className="flex flex-col gap-1">
@@ -265,8 +265,8 @@ export function PortfolioGallery() {
   const [featured, ...rest] = projects;
 
   return (
-    <div className="flex flex-1 flex-col py-20 md:py-28">
-      <Container className="flex flex-col gap-14 md:gap-16">
+    <div className="flex flex-1 flex-col py-12 md:py-20 lg:py-28">
+      <Container className="flex flex-col gap-10 md:gap-14 lg:gap-16">
         <SectionHeading
           eyebrow="Portfolio"
           title="Real products. Real users. Real impact."
@@ -279,7 +279,7 @@ export function PortfolioGallery() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="grid grid-cols-2 gap-4 rounded-2xl border border-white/[0.08] bg-white/[0.025] p-6 sm:grid-cols-4"
+          className="grid grid-cols-2 gap-3 rounded-2xl border border-white/[0.08] bg-white/[0.025] p-4 sm:grid-cols-4 sm:gap-4 sm:p-6"
         >
           {[
             { value: "100+", label: "Projects shipped" },
@@ -298,7 +298,7 @@ export function PortfolioGallery() {
         <ProjectCard project={featured} index={0} />
 
         {/* Grid — 2 columns */}
-        <div className="grid gap-8 md:grid-cols-2 xl:gap-10">
+        <div className="grid gap-5 md:grid-cols-2 lg:gap-8 xl:gap-10">
           {rest.map((p, i) => (
             <ProjectCard key={p.title} project={p} index={i + 1} />
           ))}

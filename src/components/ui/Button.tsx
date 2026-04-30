@@ -13,7 +13,7 @@ type ButtonProps = {
 };
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold tracking-wide transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-400/80";
+  "inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold tracking-wide transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-400/80 sm:w-auto";
 
 const variants = {
   primary:
@@ -21,7 +21,7 @@ const variants = {
   ghost:
     "border border-white/15 bg-white/[0.04] text-slate-100 backdrop-blur-md hover:border-cyan-400/35 hover:bg-white/[0.07]",
   "ghost-dark":
-    "border border-slate-300 bg-white text-slate-800 hover:border-slate-400 hover:bg-slate-50",
+    "border border-white/15 bg-white/[0.04] text-slate-100 backdrop-blur-md hover:border-cyan-400/35 hover:bg-white/[0.07]",
 };
 
 export function Button({

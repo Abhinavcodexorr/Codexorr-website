@@ -36,6 +36,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   themeColor: "#020617",
   colorScheme: "dark",
+  viewportFit: "cover",
 };
 
 export default function RootLayout({
@@ -50,7 +51,7 @@ export default function RootLayout({
         <SmoothScroll>
           <div className="flex min-h-screen flex-col">
             <Header />
-            <main className="flex flex-1 flex-col">{children}</main>
+            <main className="flex min-w-0 flex-1 flex-col overflow-x-hidden">{children}</main>
             <Footer />
           </div>
         </SmoothScroll>

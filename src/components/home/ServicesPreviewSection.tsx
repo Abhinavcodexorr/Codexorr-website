@@ -66,18 +66,18 @@ const cards = [
 
 export function ServicesPreviewSection() {
   return (
-    <section className="relative bg-slate-950 py-28 md:py-36">
+    <section className="relative bg-slate-950 py-14 md:py-24 lg:py-32">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
-      <Container className="flex flex-col gap-16 md:gap-20">
+      <Container className="flex flex-col gap-10 md:gap-16 lg:gap-20">
         <SectionHeading
           eyebrow="Capabilities"
           title="Full-stack craft — from silicon to screen."
           subtitle="Click any capability to learn more. Every card is a discipline."
         />
 
-        <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 sm:gap-5 xl:grid-cols-3">
           {cards.map((card, i) => (
             <motion.div
               key={card.title}
@@ -88,7 +88,7 @@ export function ServicesPreviewSection() {
             >
               <Link href={card.href} className="block h-full outline-none">
                 <HolographicCard className="h-full" intensity={6} glowColor={card.glow}>
-                  <div className="flex flex-col gap-4 p-6 md:p-7">
+                  <div className="flex flex-col gap-3 p-5 md:p-7">
                     <div className={`inline-flex h-11 w-11 items-center justify-center rounded-xl border ${card.iconBg}`}>
                       <card.icon className="h-5 w-5" aria-hidden />
                     </div>

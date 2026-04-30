@@ -22,7 +22,10 @@
 /* ============================================================
    Base
    ============================================================ */
-html { scroll-behavior: auto; }
+html {
+  scroll-behavior: auto;
+  overflow-x: hidden;
+}
 
 body {
   background-color: var(--background);
@@ -131,15 +134,25 @@ body {
   background-size: 28px 28px;
 }
 
-/* Animated gradient text */
+/* Animated gradient text (WebKit needs explicit fill for clip) */
 .gradient-text-animated {
   display: inline-block;
   padding-bottom: 0.12em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
   background: linear-gradient(90deg, #22d3ee 0%, #a78bfa 33%, #f472b6 66%, #22d3ee 100%);
   background-size: 300% 100%;
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+@supports not (background-clip: text) {
+  .gradient-text-animated {
+    color: #67e8f9;
+    background: none;
+    -webkit-text-fill-color: unset;
+  }
 }
 @media (prefers-reduced-motion: no-preference) {
   .gradient-text-animated { animation: gradient-flow 5s ease infinite; }
