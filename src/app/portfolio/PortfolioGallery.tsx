@@ -274,7 +274,7 @@ export function PortfolioGallery() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="grid grid-cols-2 gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:grid-cols-4 sm:gap-4 sm:p-6"
+          className="grid grid-cols-2 gap-3 rounded-2xl border border-slate-200/90 bg-white p-4 shadow-[0_26px_76px_-54px_rgba(15,23,42,0.16)] sm:grid-cols-4 sm:gap-4 sm:p-6"
         >
           {[
             { value: "100+", label: "Projects shipped" },
@@ -307,10 +307,12 @@ export function PortfolioGallery() {
           transition={{ duration: 0.5 }}
           className="flex flex-col items-center gap-4 text-center"
         >
-          <p className="text-sm text-slate-600">Have an idea for an app, platform, or digital product?</p>
+          <p className="text-sm text-slate-600">
+            Have an idea for an app, platform, or digital product?
+          </p>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-800 shadow-sm transition-all duration-300 hover:border-cyan-400/50 hover:text-cyan-700"
+            className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-900 shadow-sm transition-all duration-300 hover:border-cyan-300 hover:bg-[linear-gradient(135deg,#f8fafcff_0%,#ecfeff66_52%,#f5f3ffaa_100%)] hover:text-cyan-950"
           >
             <Star className="h-4 w-4 text-cyan-500" aria-hidden />
             Start your project

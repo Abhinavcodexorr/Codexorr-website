@@ -4,7 +4,7 @@ import { ServicesContent } from "./ServicesContent";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Web, mobile, cloud, AI automation, and UX — flagship-grade delivery from architecture to launch.",
+    "Web, mobile, AI, automation, cloud, UX, analytics, and strategic discovery — flagship delivery from feasibility to production operations.",
 };
 
 export default function ServicesPage() {

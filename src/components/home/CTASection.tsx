@@ -8,61 +8,70 @@ import { Container } from "@/components/ui/Container";
 
 export function CTASection() {
   return (
-    <section className="relative overflow-x-hidden bg-gradient-to-b from-white via-emerald-50/25 to-white pb-10 pt-10 md:pb-16 md:pt-12 lg:pb-20">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_72%_48%_at_50%_0%,rgba(34,211,238,0.07),transparent),radial-gradient(ellipse_50%_42%_at_95%_100%,rgba(167,139,250,0.065),transparent),radial-gradient(ellipse_58%_40%_at_8%_85%,rgba(52,211,153,0.07),transparent)]" />
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+    <section className="relative overflow-x-hidden border-t border-slate-200/80 bg-[linear-gradient(180deg,#fafbfc_0%,#ffffff_100%)] pb-24 pt-[88px] md:pb-[120px] md:pt-24">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_65%_50%_at_52%_-8%,rgba(34,211,238,0.16),transparent_58%),radial-gradient(ellipse_54%_48%_at_106%_90%,rgba(167,139,250,0.12),transparent_55%)]"
+      />
 
       <Container>
-        <Parallax offset={20} className="relative">
+        <Parallax offset={12} className="relative">
           <motion.div
-            initial={{ opacity: 0, y: 22 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] as const }}
-            className="relative isolate mx-auto overflow-hidden rounded-2xl border border-slate-200/90 bg-white/75 px-5 py-8 shadow-[0_28px_80px_-44px_rgba(15,23,42,0.18)] backdrop-blur-xl backdrop-saturate-150 sm:rounded-[1.35rem] sm:px-8 md:px-12 md:py-11"
+            viewport={{ once: true, margin: "-48px" }}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] as const }}
+            className="relative isolate mx-auto max-w-[940px] overflow-hidden rounded-[1.85rem] border border-slate-200/95 px-9 py-12 shadow-[0_48px_120px_-70px_rgba(15,23,42,0.18)] md:rounded-[2.125rem] md:px-14 md:py-14"
           >
             <div
               aria-hidden
-              className="pointer-events-none absolute inset-0 rounded-[inherit] bg-[linear-gradient(135deg,rgba(255,255,255,0.98)_0%,rgba(248,250,252,0.92)_42%,rgba(241,245,249,0.82)_100%)]"
+              className="absolute inset-0 bg-[linear-gradient(135deg,#ffffff_0%,#f5fbff_40%,#f7f8ff_100%)] backdrop-blur-2xl"
             />
             <div
               aria-hidden
-              className="pointer-events-none absolute inset-x-[1px] top-[1px] z-[1] h-[1.5px] rounded-t-[inherit] bg-gradient-to-r from-teal-400/45 via-cyan-400/42 to-violet-400/42"
+              className="pointer-events-none absolute inset-x-10 top-[1px] z-[2] h-px rounded-full bg-gradient-to-r from-teal-300/0 via-teal-300/85 to-indigo-300/85"
+            />
+            <motion.div
+              aria-hidden
+              className="pointer-events-none absolute -top-44 right-[-20%] h-[420px] w-[420px] rounded-full bg-cyan-300/36 blur-[90px]"
+              animate={{
+                opacity: [0.5, 0.74, 0.5],
+                scale: [0.95, 1.06, 0.95],
+              }}
+              transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
             />
 
-            <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center gap-5 pb-1 text-center md:gap-6">
-              <div className="relative inline-flex items-center gap-2 overflow-hidden rounded-full border border-emerald-200/60 bg-white/92 px-4 py-2 shadow-sm backdrop-blur-sm sm:gap-2.5 sm:px-5">
-                <Sparkles className="h-3.5 w-3.5 shrink-0 text-emerald-600" aria-hidden />
-                <span className="relative font-mono text-[9px] font-semibold uppercase tracking-[0.2em] text-teal-800 sm:text-[10px] sm:tracking-[0.24em]">
-                  Let&apos;s build together
+            <div className="relative z-10 mx-auto flex max-w-2xl flex-col items-center gap-8 text-center">
+              <div className="inline-flex items-center gap-2 rounded-full border border-teal-200/95 bg-white/88 px-5 py-2 shadow-sm backdrop-blur-sm">
+                <Sparkles className="h-3.5 w-3.5 text-teal-600" aria-hidden />
+                <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.24em] text-teal-800">
+                  Accelerate confidently
                 </span>
               </div>
 
-              <h2 className="font-heading flex flex-col items-center gap-1.5 text-2xl font-semibold tracking-tight text-slate-900 sm:gap-2 sm:text-3xl md:text-4xl lg:text-[2.65rem] md:leading-[1.4] lg:leading-[1.38] leading-normal">
-                <span className="block pb-[0.06em] text-balance">Ready for software that feels</span>
-                <span className="gradient-text-fill bg-gradient-to-r from-teal-700 via-cyan-600 to-violet-700 bg-clip-text pb-[0.12em] text-center text-transparent">
-                  flagship-tier?
-                </span>
+              <h2 className="font-heading text-[1.8rem] font-semibold leading-[1.2] tracking-tight text-slate-900 md:text-[2.45rem]">
+                Ship the next‑gen experience your KPIs demanded{" "}
+                <span className="gradient-text-animated">yesterday.</span>
               </h2>
 
-              <p className="max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base md:text-lg">
-                Tell us about your roadmap — we&apos;ll respond within two business days with a sane plan: architecture outline,
-                timeline bands, and collaboration model.
+              <p className="max-w-xl text-[15px] leading-relaxed text-slate-600 md:text-lg">
+                From AI copilots to cloud-native backends — briefing us aligns architecture, pacing, instrumentation, and a pod
+                that merges with yours.
               </p>
 
-              <div className="flex w-full flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-center sm:gap-4">
+              <div className="flex w-full max-w-xl flex-col gap-4 sm:flex-row sm:justify-center">
                 <Link
                   href="/contact"
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-teal-500 via-emerald-400 to-violet-600 px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_32px_-14px_rgba(20,184,166,0.42)] transition-all duration-300 hover:brightness-[1.03] hover:shadow-[0_18px_44px_-16px_rgba(59,130,246,0.28)] sm:w-auto"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-teal-500 via-cyan-500 to-violet-500 px-8 py-3.5 text-sm font-semibold text-white shadow-[0_14px_40px_-20px_rgba(20,184,166,0.45)] transition hover:brightness-105 sm:w-auto"
                 >
-                  Schedule discovery
+                  Start a project
                   <ArrowRight className="h-4 w-4 shrink-0" aria-hidden />
                 </Link>
                 <Link
                   href="/services"
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-200 bg-white/90 px-6 py-3 text-sm font-semibold text-slate-800 shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-emerald-300/85 hover:text-teal-800 sm:w-auto"
+                  className="inline-flex w-full items-center justify-center rounded-full border border-slate-200 bg-white px-8 py-3.5 text-sm font-semibold text-slate-800 shadow-[0_14px_40px_-38px_rgba(15,23,42,0.16)] transition hover:border-teal-200 sm:w-auto"
                 >
-                  Explore services
+                  View services
                 </Link>
               </div>
             </div>

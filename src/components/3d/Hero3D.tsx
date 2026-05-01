@@ -33,14 +33,14 @@ function FloatingCore({ reducedMotion }: { reducedMotion: boolean }) {
   });
 
   return (
-    <mesh ref={ref}>
+      <mesh ref={ref}>
       <icosahedronGeometry args={[0.95, 2]} />
       <meshStandardMaterial
-        color="#5ee1d6"
-        emissive="#8b86f0"
-        emissiveIntensity={0.36}
-        roughness={0.48}
-        metalness={0.14}
+        color="#4fd4d0"
+        emissive="#8b93f9"
+        emissiveIntensity={0.42}
+        roughness={0.42}
+        metalness={0.16}
       />
     </mesh>
   );
@@ -49,7 +49,7 @@ function FloatingCore({ reducedMotion }: { reducedMotion: boolean }) {
 function SceneBody({ reducedMotion }: { reducedMotion: boolean }) {
   return (
     <>
-      <ambientLight intensity={2.25} />
+      <ambientLight intensity={2.55} />
       <FloatingCore reducedMotion={reducedMotion} />
     </>
   );

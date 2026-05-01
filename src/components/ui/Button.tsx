@@ -15,15 +15,15 @@ type ButtonProps = {
 };
 
 const base =
-  "inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold tracking-wide transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-500 sm:w-auto active:scale-[0.99] hover:-translate-y-px";
+  "inline-flex w-full items-center justify-center gap-2 rounded-full px-8 py-3.5 text-sm font-semibold tracking-wide transition-[transform,box-shadow,opacity] duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600 sm:w-auto active:scale-[0.986] hover:-translate-y-0.5";
 
 const variants = {
   primary:
-    "bg-gradient-to-r from-teal-500 via-cyan-500 to-violet-500 text-white shadow-[0_10px_30px_-10px_rgba(20,184,166,0.45)] hover:brightness-110 hover:shadow-[0_14px_36px_-12px_rgba(139,92,246,0.38)]",
+    "bg-gradient-to-r from-teal-500 via-cyan-500 to-violet-500 text-white shadow-[0_14px_40px_-18px_rgba(20,184,166,0.45)] hover:shadow-[0_18px_44px_-16px_rgba(167,139,250,0.35)] hover:brightness-105",
   outline:
-    "border border-slate-300 bg-white text-slate-800 shadow-sm hover:border-teal-300/85 hover:text-teal-800",
+    "border border-slate-200 bg-white text-slate-800 shadow-[0_10px_32px_-24px_rgba(15,23,42,0.18)] hover:border-teal-200 hover:text-teal-900 hover:shadow-[0_14px_40px_-24px_rgba(20,184,166,0.18)]",
   ghost:
-    "border border-slate-200 bg-white/70 text-slate-700 backdrop-blur hover:border-teal-300/50 hover:bg-white hover:text-teal-800",
+    "border border-transparent bg-white/70 text-slate-700 backdrop-blur-sm hover:border-slate-200 hover:bg-white",
 };
 
 export function Button({

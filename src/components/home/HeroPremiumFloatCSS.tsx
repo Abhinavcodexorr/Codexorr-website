@@ -18,7 +18,7 @@ export function HeroPremiumFloatCSS({ className }: { className?: string }) {
     >
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-[-28%] bg-[radial-gradient(ellipse_68%_60%_at_45%_42%,rgba(34,211,238,0.38),transparent_62%),radial-gradient(ellipse_55%_50%_at_72%_58%,rgba(167,139,250,0.32),transparent_58%),radial-gradient(ellipse_50%_45%_at_30%_70%,rgba(52,211,153,0.22),transparent_55%)] blur-3xl saturate-125"
+        className="pointer-events-none absolute inset-[-28%] bg-[radial-gradient(ellipse_68%_60%_at_45%_42%,rgba(34,211,238,0.28),transparent_62%),radial-gradient(ellipse_55%_50%_at_72%_58%,rgba(167,139,250,0.22),transparent_58%),radial-gradient(ellipse_50%_45%_at_30%_70%,rgba(52,211,153,0.14),transparent_55%)] blur-3xl saturate-115"
       />
       <div
         aria-hidden
@@ -27,20 +27,20 @@ export function HeroPremiumFloatCSS({ className }: { className?: string }) {
           !reduceMotion && "hero-premium-sheen-shell",
         )}
       >
-        <div className="absolute inset-[12%] rounded-[44%_56%_48%_52%/52%_46%_54%_48%] bg-gradient-to-br from-cyan-200/55 via-sky-100/35 to-indigo-200/45 blur-md ring-1 ring-white/55" />
+        <div className="absolute inset-[12%] rounded-[44%_56%_48%_52%/52%_46%_54%_48%] bg-gradient-to-br from-cyan-200/75 via-white/55 to-indigo-200/65 blur-md ring-1 ring-white/80" />
         <div className={cn("absolute inset-[20%]", !reduceMotion && "hero-premium-orb-live")}>
-          <div className="absolute inset-0 rounded-[52%_48%_50%_50%/46%_54%_46%_54%] bg-gradient-to-tr from-teal-300/50 via-violet-200/42 to-cyan-200/48 shadow-[inset_0_-20px_40px_rgba(255,255,255,0.35),0_28px_64px_-20px_rgba(34,211,238,0.28),0_18px_48px_-24px_rgba(109,76,229,0.18)] backdrop-blur-[2px]" />
+          <div className="absolute inset-0 rounded-[52%_48%_50%_50%/46%_54%_46%_54%] bg-gradient-to-tr from-teal-200/75 via-white/72 to-indigo-200/60 shadow-[inset_0_-20px_40px_rgba(255,255,255,0.55),0_28px_64px_-24px_rgba(34,211,238,0.25)] backdrop-blur-[3px]" />
           <div
             className="absolute inset-[6%] rounded-[48%_52%_52%_48%/54%_48%_52%_46%]"
             style={{
               background:
-                "linear-gradient(135deg, rgba(255,255,255,0.5) 0%, transparent 38%, rgba(167,139,250,0.28) 70%, transparent 96%)",
+                "linear-gradient(135deg, rgba(255,255,255,0.65) 0%, transparent 38%, rgba(192,132,252,0.22) 70%, transparent 96%)",
             }}
           />
         </div>
         <svg
           className={cn(
-            "pointer-events-none absolute inset-[8%] h-[84%] w-[84%] text-cyan-500/35",
+            "pointer-events-none absolute inset-[8%] h-[84%] w-[84%] text-cyan-400/48",
             !reduceMotion && "hero-premium-grid-spin",
           )}
           viewBox="0 0 200 200"
@@ -60,7 +60,7 @@ export function HeroPremiumFloatCSS({ className }: { className?: string }) {
           <path d="M 100 26 V 176" stroke="currentColor" strokeWidth="0.2" opacity={0.45} strokeDasharray="4 11" />
         </svg>
       </div>
-      <div className="pointer-events-none absolute inset-0 rounded-[inherit] bg-[linear-gradient(180deg,rgba(255,255,255,0.55)_0%,transparent_42%,transparent_62%,rgba(255,255,255,0.35)_100%)]" aria-hidden />
+      <div className="pointer-events-none absolute inset-0 rounded-[inherit] bg-[linear-gradient(180deg,rgba(255,255,255,0.75)_0%,transparent_44%,transparent_58%,rgba(255,255,255,0.6)_100%)]" aria-hidden />
     </div>
   );
 }

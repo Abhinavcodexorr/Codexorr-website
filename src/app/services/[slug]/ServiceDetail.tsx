@@ -25,7 +25,7 @@ export function ServiceDetail({ slug }: { slug: ServiceSlug }) {
           aria-hidden
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_0%,rgba(34,211,238,0.10),transparent_60%)]"
         />
-        <Container className="relative flex flex-col gap-8 md:gap-10">
+        <Container className="relative flex flex-col gap-10 lg:grid lg:grid-cols-[1.06fr_minmax(0,0.96fr)] lg:items-start lg:gap-14 xl:gap-16">
           <motion.div initial="hidden" animate="show" variants={fade} className="flex flex-col items-start gap-4">
             <Link
               href="/services"
@@ -56,13 +56,38 @@ export function ServiceDetail({ slug }: { slug: ServiceSlug }) {
 
           <motion.div
             variants={fade}
+            initial={{ opacity: 0, scale: 0.97 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="relative hidden min-h-[280px] w-full overflow-hidden rounded-[1.85rem] border border-teal-100/90 bg-[linear-gradient(145deg,#ffffff_0%,#eefbff_52%,#f4f8ff_100%)] shadow-[0_52px_120px_-74px_rgba(15,23,42,0.18)] lg:block"
+            aria-hidden
+          >
+            <div className="mesh-blob-a absolute -left-12 top-[8%] h-48 w-48 rounded-full bg-cyan-200/55 blur-[48px]" />
+            <div className="mesh-blob-b absolute -right-14 bottom-[4%] h-52 w-52 rounded-full bg-violet-200/45 blur-[52px]" />
+            <div className="relative flex h-full min-h-[280px] flex-col justify-end p-8">
+              <div className="rounded-2xl border border-white/90 bg-white/88 p-5 shadow-lg backdrop-blur-md">
+                <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-teal-700">Live blueprint</p>
+                <div className="mt-4 h-24 rounded-xl bg-gradient-to-br from-slate-100 to-white ring-1 ring-slate-200/90" />
+                <div className="mt-4 flex gap-2">
+                  <span className="h-9 flex-[1] rounded-lg bg-teal-100/90" />
+                  <span className="h-9 w-16 rounded-lg bg-indigo-100/90" />
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            variants={fade}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="grid grid-cols-2 gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:grid-cols-4 sm:gap-4 sm:p-6"
+            className="flex flex-wrap gap-5 rounded-2xl border border-slate-200/92 bg-white/98 p-5 shadow-[0_26px_80px_-62px_rgba(15,23,42,0.15)] lg:col-span-2 lg:gap-6 lg:p-8"
           >
             {service.outcomes.map((o) => (
-              <div key={o.label} className="flex flex-col items-center gap-1 text-center">
+              <div
+                key={o.label}
+                className="flex min-w-[140px] flex-1 flex-col items-center gap-1 text-center sm:min-w-[160px]"
+              >
                 <span className="font-heading text-xl font-bold text-slate-900 md:text-2xl">{o.value}</span>
                 <span className="text-[10px] font-medium uppercase tracking-[0.18em] text-slate-500 md:text-xs">{o.label}</span>
               </div>
@@ -78,9 +103,9 @@ export function ServiceDetail({ slug }: { slug: ServiceSlug }) {
 
         <Container className="flex flex-col gap-7">
           <div className="flex max-w-2xl flex-col gap-3">
-            <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.3em] text-cyan-600">Capabilities</span>
+            <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.3em] text-cyan-600">What we offer</span>
             <h2 className="font-heading text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl md:text-[2.25rem]">
-              What we deliver inside this practice.
+              Structured delivery across design, build, and launch surfaces.
             </h2>
           </div>
 
@@ -120,7 +145,7 @@ export function ServiceDetail({ slug }: { slug: ServiceSlug }) {
           <div className="flex max-w-2xl flex-col gap-3">
             <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.3em] text-cyan-600">Process</span>
             <h2 className="font-heading text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl md:text-[2.25rem]">
-              How a typical engagement unfolds.
+              Design → develop → deploy — with measurable gates at every hand-off.
             </h2>
           </div>
 
@@ -140,6 +165,37 @@ export function ServiceDetail({ slug }: { slug: ServiceSlug }) {
               </motion.li>
             ))}
           </ol>
+        </Container>
+      </section>
+
+      {/* Why choose us */}
+      <section className="relative border-y border-slate-200/80 bg-[linear-gradient(135deg,#f8fafc_0%,#ffffff_52%,#f3fbf9_100%)] py-10 md:py-[4.75rem]">
+        <Container className="flex flex-col gap-9">
+          <div className="flex max-w-2xl flex-col gap-3">
+            <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.3em] text-cyan-600">
+              Why choose CodeXorr
+            </span>
+            <h2 className="font-heading text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl md:text-[2.25rem]">
+              Benefits stitched into delivery — not slide filler.
+            </h2>
+          </div>
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {service.whyChooseUs.map((w) => (
+              <motion.article
+                key={w.title}
+                variants={fade}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, margin: "-44px" }}
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.28 }}
+                className="flex flex-col gap-3 rounded-2xl border border-white/95 bg-white/94 p-6 shadow-[0_28px_76px_-58px_rgba(15,23,42,0.18)] backdrop-blur-sm"
+              >
+                <h3 className="font-heading text-lg font-semibold text-slate-900">{w.title}</h3>
+                <p className="text-sm leading-relaxed text-slate-600">{w.body}</p>
+              </motion.article>
+            ))}
+          </div>
         </Container>
       </section>
 

@@ -45,7 +45,7 @@ export function SectionHeading({
         className={cn(
           "font-heading text-2xl font-semibold tracking-tight sm:text-3xl md:text-[2.75rem] leading-normal md:leading-snug",
           theme === "light" ? "text-slate-900" : "text-slate-50",
-          theme === "dark" && "text-glow-sm",
+          theme === "dark" && "text-shadow-[0_2px_32px_rgba(34,211,238,0.08)]",
         )}
       >
         {title}

@@ -9,12 +9,13 @@ function Hero3DPlaceholder() {
   return (
     <div
       aria-hidden
-      className="min-h-[inherit] w-full rounded-[inherit] bg-gradient-to-br from-sky-50/95 via-cyan-50/85 to-violet-50/78 ring-1 ring-cyan-100/50"
+      className="min-h-[inherit] w-full rounded-[inherit] bg-gradient-to-br from-white via-violet-50/90 to-teal-50/92 ring-1 ring-cyan-100/70"
     />
   );
 }
 
 const Hero3DCanvas = dynamic(() => import("@/components/3d/Hero3D"), {
+
   ssr: false,
   loading: Hero3DPlaceholder,
 });
@@ -73,7 +74,7 @@ export function LazyHero3D({ className }: { className?: string }) {
   const chrome = (
     <div
       aria-hidden
-      className="pointer-events-none absolute inset-0 rounded-[inherit] shadow-[inset_0_0_72px_rgba(255,255,255,0.22)]"
+      className="pointer-events-none absolute inset-0 rounded-[inherit] shadow-[inset_0_0_72px_rgba(255,255,255,0.74)]"
     />
   );
 
