@@ -1,26 +1,49 @@
 # Codexorr Website
 
-Multi-page marketing site for Codexorr — AI mobile apps and software development.
+React + Vite multi-page marketing site for Codexorr.
 
-## Pages
+## Stack
 
-- `index.html` — Home
-- `solutions.html` — Solutions
-- `services.html` — Services
-- `portfolio.html` — Case studies
-- `industries.html` — Industries
-- `about.html` — About
-- `resources.html` — Resources
-- `contact.html` — Contact & FAQ
+- React 18
+- Vite 6
+- React Router 6
+- Framer Motion
+- Three.js
+- Tailwind CSS
 
-## Local preview
+## Project structure
 
-```bash
-npx serve .
+```
+public/           Static assets (logo)
+src/
+  components/     App shell, sections, effects
+  App.jsx         Router wrapper
+  main.jsx        Entry point
+  index.css       Global styles
 ```
 
-Open the URL shown in the terminal (usually http://localhost:3000).
+## Commands
+
+```bash
+npm install
+npm run dev      # http://localhost:5173
+npm run build    # outputs to dist/
+npm run preview
+```
+
+## Routes
+
+| Path | Page |
+|------|------|
+| `/` | Home |
+| `/solutions` | Solutions |
+| `/services` | Services |
+| `/portfolio` | Case studies |
+| `/industries` | Industries |
+| `/about` | About |
+| `/resources` | Resources |
+| `/contact` | Contact & FAQ |
 
 ## Deploy
 
-Static files deploy to Vercel, Netlify, or GitHub Pages with no build step required.
+Build with `npm run build` and deploy the `dist/` folder to Vercel.

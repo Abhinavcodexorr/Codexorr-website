@@ -1,0 +1,161 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #fbfbff;
+  --bg2: #f3f4fc;
+  --surface: #ffffff;
+  --ink: #0b0b1a;
+  --muted: #5e5e7a;
+  --line: rgba(12, 12, 40, 0.08);
+  --plasma: #6c47ff;
+  --arc: #00b4d8;
+  --violet: #8b5cf6;
+  --ember: #ff4d6d;
+  --soft: 0 12px 40px rgba(24, 24, 70, 0.08);
+  --soft-lg: 0 30px 70px rgba(24, 24, 70, 0.14);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Inter, system-ui, sans-serif;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(108, 71, 255, 0.18);
+}
+
+.text-gradient {
+  background: linear-gradient(100deg, var(--plasma), var(--arc));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 34s linear infinite;
+}
+
+.marquee-mask:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes floaty {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(26px, -34px) scale(1.08);
+  }
+  100% {
+    transform: translate(-18px, 18px) scale(0.96);
+  }
+}
+
+.orb {
+  animation: floaty 18s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes wavemove {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes wavemove2 {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.wavemove {
+  animation: wavemove 14s linear infinite;
+}
+
+.wavemove2 {
+  animation: wavemove2 20s linear infinite;
+}
+
+@keyframes spotlight {
+  0% {
+    opacity: 0;
+    transform: translate(-72%, -62%) scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -40%) scale(1);
+  }
+}
+
+.animate-spotlight {
+  animation: spotlight 2.2s ease 0.5s 1 forwards;
+}
+
+@keyframes aurora-pan {
+  0% {
+    background-position: 0% 50%, 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%, 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%, 0% 50%;
+  }
+}
+
+.aurora {
+  animation: aurora-pan 16s ease infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .marquee-track,
+  .orb,
+  .wavemove,
+  .wavemove2,
+  .animate-spotlight,
+  .aurora {
+    animation: none !important;
+  }
+}
