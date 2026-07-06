@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+﻿import React, { useState, useRef, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import {
   motion, useScroll, useTransform, useSpring, useInView,
@@ -6,6 +6,11 @@ import {
   useVelocity, useAnimationFrame, wrap,
 } from "framer-motion";
 import * as THREE from "three";
+import {
+  NAV, ROLES, HERO_BULLETS, STATS, SOLUTIONS, SERVICES, INDUSTRIES,
+  WHY, AWARDS, RESOURCES, FOOTER, OFFICES,
+} from "../data/content";
+import { CASES, TESTIMONIALS, FAQ } from "../data/cases";
 
 const PATH_TO_PAGE = {
   "/": "home",
@@ -25,169 +30,6 @@ const C = {
 };
 const EASE = [0.22, 1, 0.36, 1];
 const grad = "linear-gradient(120deg, " + C.plasma + ", " + C.arc + ")";
-
-const NAV = [
-  { label: "Solutions", href: "/solutions", key: "solutions" },
-  { label: "Services", href: "/services", key: "services" },
-  { label: "Work", href: "/portfolio", key: "portfolio" },
-  { label: "Industries", href: "/industries", key: "industries" },
-  { label: "About", href: "/about", key: "about" },
-  { label: "Resources", href: "/resources", key: "resources" },
-];
-const ROLES = ["Strategist", "Manager", "Designer", "Developer", "Marketer", "Investor"];
-const HERO_BULLETS = [
-  "Custom app development with advanced AI capabilities",
-  "Generative AI solutions fueling business innovation.",
-  "Top-tier data encryption with blockchain architecture.",
-];
-
-const STATS = [
-  { to: 2600, suffix: "+", label: "Business Ventures Transformed" },
-  { to: 8, suffix: "+", label: "Mission-Critical Government Initiatives" },
-  { to: 13, suffix: "+", label: "Years of Digital Engineering Excellence" },
-  { to: 50, suffix: "+", label: "Fortune 100 Technology Partnerships" },
-  { to: 25, suffix: "+", label: "Enterprise AI Solutions Engineered" },
-];
-
-const SOLUTIONS = [
-  { key: "Intelligence", tab: "Your AI Innovation Partner", icon: "âœ¦", title: "Your AI Development Partner",
-    desc: "Delivering future-ready AI solutions to accelerate growth, optimize operations, and revolutionize your business.",
-    points: ["Accelerate Operational Excellence", "Unlock Strategic Data Insights", "Transform Customer Experiences"],
-    services: ["AI Strategy & Consulting", "AI-Software Development", "Generative AI", "Machine Learning", "AI Agent & Chatbot"] },
-  { key: "Studio", tab: "Premium Tech Development Studio", icon: "â—ˆ", title: "Premium Tech Development Studio",
-    desc: "AI-Powered App Development || Enterprise Solutions || Software Development",
-    points: ["Exclusive 5 Projects Annually", "Direct C-Suite Strategic Oversight", "Top 1% Global Tech Talent"],
-    services: ["IOS App", "Android App", "Flutter App", "React Native App", "PWA App"] },
-  { key: "Blockchain", tab: "Engineering The Decentralized Future", icon: "â¬¡", title: "Engineering Web3 Excellence",
-    desc: "Powering businesses with enhanced security, optimized efficiency, and innovative decentralized solutions.",
-    points: ["Enterprise-Grade Security Architecture", "Future-Ready Smart Contracts", "Scalable Decentralized Solutions"],
-    services: ["Blockchain Consulting & Development", "Tokenization & NFT Solutions", "Custom Crypto Solutions", "Smart Contract Design & Auditing", "Metaverse Solutions"] },
-  { key: "Startup", tab: "Your Startup's Launchpad", icon: "â–³", title: "Your Startup's Launchpad",
-    desc: "Helping startups go from Zero to 1, backed by experience, technology and expertise.",
-    points: ["User-Centric Design Excellence", "AI-Assisted Wireframing & Prototyping", "Strategic Brand Architecture"],
-    services: ["Business Planning", "Legal Setup", "UI/UX Design", "Marketing Strategy", "Investor Pitch Decks"] },
-  { key: "Apps", tab: "AI-Powered App Builder", icon: "â—Ž", title: "AI-Powered App Builder",
-    desc: "Ready-to-use tech solutions for specific business use cases to launch quickly, without coding.",
-    points: ["70% Ready Code Architecture", "Get It Customized Your Way", "Launch MVP in 2 Days"],
-    services: ["Ordering & Service Booking", "Delivery Management", "Taxi & Mobility Solution", "Online Consultation", "All-in-one Marketplace"] },
-];
-
-const SERVICES = [
-  { icon: "ðŸ§ ", title: "Artificial Intelligence", desc: "Architect intelligent systems that elevate decision-making capabilities and drive operational excellence at scale." },
-  { icon: "âœ¨", title: "Gen AI", desc: "Deploy cutting-edge AI solutions that revolutionize content creation and redefine user engagement benchmarks." },
-  { icon: "â¬¡", title: "Blockchain", desc: "Build immutable digital infrastructures that ensure enterprise-grade security and transparent operations." },
-  { icon: "ðŸ“ˆ", title: "Machine Learning", desc: "Transform raw data into predictive intelligence that continuously optimizes business performance." },
-  { icon: "ðŸ”¬", title: "Data Science", desc: "Convert complex data patterns into actionable strategies that accelerate market leadership." },
-  { icon: "ðŸ“Š", title: "Business Analytics", desc: "Unlock hidden operational insights that drive competitive advantage and fuel strategic growth." },
-];
-
-const CASES = [
-  { tag: "AI Solutions", domain: "Health & Fitness", g: [C.plasma, C.violet],
-    desc: "Personalized nutrition and workout recommendations, backed by advanced AI algorithms, machine learning, and predictive analytics.",
-    m: [{ v: "80%", l: "User Retention Rate" }, { v: "20K+", l: "Meal Plans Generated" }] },
-  { tag: "Wallet", domain: "Fintech", g: [C.arc, C.plasma],
-    desc: "Developed a secure multi-chain crypto wallet with institutional-grade security protocols and smart contract integration.",
-    m: [{ v: "20%", l: "Cryptocurrencies Supported" }, { v: "$100 K+", l: "Daily Transaction Volume" }] },
-  { tag: "Metaverse", domain: "Real Estate", g: [C.violet, C.ember],
-    desc: "Created an immersive metaverse experience using AR/VR technology and blockchain integration for Dubai's premier real estate market.",
-    m: [{ v: "1000+", l: "Virtual Properties Listed" }, { v: "45%", l: "Increase in Property Views" }] },
-  { tag: "CRM", domain: "Media & Research", g: [C.arc, "#22c55e"],
-    desc: "Transforming complex media data into actionable intelligence, enabling real-time market analysis and predictive audience modeling.",
-    m: [{ v: "85%", l: "Faster Analysis Time" }, { v: "60%", l: "Faster Decision Making" }] },
-  { tag: "ERP", domain: "Logistics", g: ["#f59e0b", C.ember],
-    desc: "Streamlining logistics operations through real-time tracking, automated inventory management, and AI-powered delivery optimization.",
-    m: [{ v: "65%", l: "Faster Operations" }, { v: "2M+", l: "Shipments Tracked" }] },
-  { tag: "Custom App", domain: "Gaming", g: [C.plasma, C.arc],
-    desc: "Unique gaming platform with social features, enabling live tournaments, player statistics, and community engagement.",
-    m: [{ v: "1M+", l: "User Downloads" }, { v: "90%", l: "User Engagement" }] },
-];
-
-const INDUSTRIES = [
-  { icon: "ðŸ¥", name: "Healthcare", items: ["AI-Based Patient Monitoring", "Fraud Detection", "Remote Monitoring", "Analytics"] },
-  { icon: "ðŸ’³", name: "Finance", items: ["AI-Enabled Financial Planning", "Digital Banking", "Digital Wallet's", "Analytics"] },
-  { icon: "ðŸ½ï¸", name: "Restaurant", items: ["AI-Based Menu Recommendations", "Online Ordering", "Loyalty Programs", "Reservation Management"] },
-  { icon: "ðŸ›’", name: "eCommerce", items: ["Online Storefronts", "Marketplaces", "AI-Based Shopping Experiences", "Inventory Management"] },
-  { icon: "âœˆï¸", name: "Travel", items: ["Booking Platforms", "Itinerary Management", "Loyalty Programs", "AI Chatbots for Travel Assistance"] },
-  { icon: "ðŸŽ¬", name: "Entertainment", items: ["Streaming Platforms", "OTT Apps", "Content Management", "AI-Based Viewing Recommendations"] },
-  { icon: "ðŸšš", name: "On-Demand", items: ["Service Marketplaces", "Delivery Management", "Payment Solutions", "AI-Powered Delivery Routing"] },
-  { icon: "ðŸ“±", name: "Social Media", items: ["Community Platforms", "Content Sharing", "Messaging Solutions", "AI-Enhanced Ad Targeting"] },
-  { icon: "ðŸ“¦", name: "Logistics", items: ["Route Optimization", "Fleet Management", "AI-Powered Demand Forecasting", "Tracking Solutions"] },
-  { icon: "ðŸŽ“", name: "Education", items: ["LMS", "VR Classrooms", "AI-Driven Course Recommendations", "AI-Powered Adaptive Learning"] },
-  { icon: "ðŸ ", name: "Real Estate", items: ["Property Management", "Virtual Tours", "Lead Management", "AI-Enhanced Property Valuation"] },
-];
-
-const AWARDS = [
-  "Top Blockchain App Developers by TopDevelopers",
-  "Top App Development Company by Appfutura",
-  "Top Blockchain App Developers UK by GoodFirms",
-  "Top Mobile App Development Companies by ITFirms",
-  "Top Mobile App Developers in India by Clutch",
-  "Top AI Development Company by Mobile App Daily",
-];
-
-const TESTIMONIALS = [
-  { name: "Carlos", role: "Founder & CEO, Kai", g: [C.plasma, C.violet],
-    quote: "The staff was friendly, courteous, and very professional. He provided expertise beyond the terms of the agreement as well being available just about whenever. We continue to work together on several other projects." },
-  { name: "Ashneer Grover", role: "Founder at BharatPe", g: ["#22c55e", C.arc],
-    quote: "A trusted technology partner delivering exceptional results with professionalism and deep domain expertise." },
-  { name: "Michelle Anne", role: "Founder, Crazy Delivery", g: [C.arc, C.plasma],
-    quote: "I think Codexorr is passionate enough about what we're doing and really wants to help grow and support that. I think that's why our relationship has lasted as long as it has and continues to do so." },
-  { name: "Neil Patwardhan", role: "Founder, Skoop", g: [C.violet, "#f59e0b"],
-    quote: "An outstanding partner â€” responsive, innovative, and deeply committed to our success at every stage of development." },
-  { name: "Gerardin", role: "Founder, Island Boyz", g: [C.violet, C.ember],
-    quote: "Codexorr was an excellent partner to work with on the Safecity Mobile app which crowdsources sexual violence in public spaces. The team was very attuned to our needs, worked in tandem with our team, we're open to suggestions and did a quality job whilst adhering to timelines." },
-  { name: "ElsaMarie D'Silva", role: "Red Dot Foundation", g: [C.ember, C.plasma],
-    quote: "A dedicated team that understood our mission and delivered a platform that truly makes a difference in public safety." },
-  { name: "Abdulla Al Suwaidi", role: "Founder, Ananda", g: [C.arc, "#22c55e"],
-    quote: "We hired Codexorr about six years ago to help rebuild every aspect of an emergency app we created. The staff was friendly, courteous, and very professional. He provided expertise beyond the terms of the agreement as well being available just about whenever. We continue to work together on several other projects." },
-  { name: "Donald Tapper", role: "Stryde Solutions", g: ["#6366f1", C.arc],
-    quote: "Reliable, skilled, and always going the extra mile. Our go-to technology partner for complex digital projects." },
-  { name: "Scott Curry", role: "Founder, SD Tech", g: ["#f59e0b", C.ember],
-    quote: "I've been in business for 45 years and very seldom do I come across people like them who actually do what they say they're going to do." },
-  { name: "Maximus Brown", role: "Firesonar Founder, C.E.O", g: [C.plasma, C.ember],
-    quote: "Exceptional engineering talent combined with genuine care for client outcomes. Highly recommended for ambitious projects." },
-];
-
-const WHY = [
-  { icon: "ðŸ¤–", title: "AI-Powered Transformation", desc: "From predictive analytics to intelligent automation, we deploy AI to solve complex business challenges and uncover new opportunities." },
-  { icon: "ðŸ«¶", title: "Human-Centric Approach", desc: "While AI accelerates processes, our seasoned developers ensure the human touch remains at the core, crafting exceptional user experiences." },
-  { icon: "ðŸš€", title: "Future-Proof Scalability", desc: "We build solutions that can adapt and grow with your business.Our AI-powered architecture ensures your platforms scales seamlessly to meet future needs." },
-  { icon: "ðŸ”", title: "Transparent Communication & Collaboration", desc: "Stay informed throughout the entire development process with clear timelines, regular updates, and open communication." },
-];
-
-const RESOURCES = [
-  { type: "Blog", read: "3 Min Read", title: "Everything You Need To Know About Blockchain Technology" },
-  { type: "Video", read: "3 Min Watch", title: "Generative AI Development Company - Build Next-Gen Gen AI Solutions | Generative AI App Development" },
-  { type: "Blog", read: "5 Min Read", title: "The Role of AI & ML in Custom Software Development" },
-];
-
-const FAQ = [
-  { q: "What mobile app development services do you offer?", a: "Codexorr stands as a premier technology partner delivering comprehensive mobile application development solutions â€” Native iOS, Android, Flutter, React Native, PWA, and Enterprise Web Applications across Food & Beverage, Logistics, Entertainment, Enterprise, Fitness, Travel, E-commerce, Education, Real Estate, Healthcare, FinTech, and more." },
-  { q: "What is the average cost and timeline for developing a mobile app?", a: "Foundational applications: $15,000â€“$35,000. Enterprise-grade: $35,000â€“$75,000+. Mission-critical: $75,000â€“$150,000+. MVPs ship in 8â€“12 weeks, full-featured apps in 4â€“6 months, complex enterprise solutions in 6â€“12 months." },
-  { q: "Can you integrate AI or other emerging technologies into my app?", a: "Yes. We architect next-generation applications with machine learning, NLP, computer vision, predictive analytics, intelligent automation, blockchain, AR, IoT, edge computing, and quantum-ready architectures." },
-  { q: "Do you offer a free consultation or project estimate?", a: "We provide exclusive strategic consultations through direct access to C-level executives who have launched 10,000+ digital products. You'll receive a comprehensive strategic blueprint with technical specifications and precise investment modeling." },
-  { q: "How do you ensure the security and quality of the app or software you develop?", a: "Enterprise-grade security: end-to-end encryption, role-based access, penetration testing, GDPR/HIPAA/SOC 2/PCI DSS compliance, automated QA, and continuous security monitoring post-deployment." },
-  { q: "How do you ensure a seamless user experience in your designs?", a: "Through our exclusive in-house design studio Allurive â€” ethnographic studies, cognitive usability testing, rapid prototyping, and iterative user validation before development begins." },
-  { q: "What makes Codexorr the best software and mobile app development company?", a: "200+ elite professionals, 10,000+ digital products for Fortune 500 enterprises and startups across 30+ countries, $50M+ startup funding enabled, recognized by Clutch and The Manifest." },
-  { q: "What software development services do you offer?", a: "Technology Consulting, Custom Software Engineering, Enterprise Applications, CRM/ERP, API Development, System Integration â€” agile sprints with dedicated teams, T&M, or fixed-scope delivery." },
-  { q: "Do you offer post-launch support and maintenance?", a: "Yes â€” stack modernization, infrastructure monitoring, proactive support, security monitoring, platform updates, UX optimization, and real-time performance analytics." },
-  { q: "What AI solutions and services do you offer to transform business operations?", a: "AI Agents, Chatbots, AI Consulting, custom ML/NLP/computer vision, Adaptive AI, Generative AI, and RPA â€” end-to-end transformation from strategy through deployment and optimization." },
-];
-
-const OFFICES = [
-  { city: "Dubai", addr: "Level- 18, Dubai World Trade Centre Tower, Sheikh Rashid Tower, Sheikh Zayed Rd, Dubai, UAE", email: "business@codexorr.com", phone: "+971-55-645-7972" },
-  { city: "India", addr: "Plot no I - 36, Sector 83 Alpha, Mohali SAS Nagar 140308", email: "business@codexorr.com", phone: "+91-771-976-8427" },
-  { city: "Mexico", addr: "Av. Miguel Hidalgo y Costilla 1995, Arcos Vallarta, 44600 Guadalajara, Mexico", email: "business@codexorr.com", phone: "+1(213)2614953" },
-  { city: "USA", addr: "4231 Balboa Ave #512 San Diego, CA 92117 United States", email: "business@codexorr.com", phone: "+1(213)2614953" },
-  { city: "UK", addr: "2nd floor, College House, 17 King Edwards Rd, London HA4 7AE, UK", email: "business@codexorr.com", phone: "+44 (20) 82644493" },
-];
-
-const FOOTER = {
-  Company: ["Partnership", "Our Testimonials", "About us", "Why Choose us", "How We Work", "Career"],
-  Industries: ["Food Delivery", "Healthcare", "Pickup & Delivery", "E-Commerce Delivery", "Taxi and Transportation", "Home Services", "Fitness", "Education", "Real Estate"],
-  Product: ["Codexorr Blockchain", "Codexorr AI Tech", "Codexorr Studio", "Codexorr Startup", "Codexorr Apps"],
-  Services: ["Premium Custom Solutions", "AI Development", "Blockchain Development", "Mobile App Dubai", "Fintech Development", "Enterprise Software Development", "UI/UX Design - Allurive", "Web Development", "Growth & Marketing"],
-};
 
 /* ===================== AMBIENT CANVAS (network + falling stars + shooting stars) ===================== */
 function NetworkCanvas() {
@@ -883,7 +725,7 @@ function Hero() {
 
             <motion.div initial={reduce ? false : { opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.75 }}
               className="mt-9 flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-4">
-              <GradBtn>Build Your Success Story â†’</GradBtn>
+              <GradBtn>Build Your Success Story {"\u2192"}</GradBtn>
               <GhostBtn href="/portfolio">See Our Work</GhostBtn>
             </motion.div>
           </div>
@@ -982,7 +824,7 @@ function Solutions({ hideHead = false }) {
                   </motion.li>
                 ))}
               </ul>
-              <div className="mt-8"><GradBtn>Explore {s.key} â†’</GradBtn></div>
+              <div className="mt-8"><GradBtn>Explore {s.key} {"\u2192"}</GradBtn></div>
             </div>
             <div className="grid grid-cols-1 gap-3 content-start">
               {s.services.map((sv, j) => (
@@ -1078,7 +920,7 @@ function Cases({ hideHead = false }) {
                       </div>
                     ))}
                   </div>
-                  <div className="mt-7"><GhostBtn href="/contact">Download Case Study â†“</GhostBtn></div>
+                  <div className="mt-7"><GhostBtn href="/contact">Download Case Study {"\u2193"}</GhostBtn></div>
                 </div>
               </motion.div>
             </AnimatePresence>
@@ -1107,7 +949,7 @@ function Industries({ hideHead = false }) {
                 <ul className="flex flex-col gap-1.5 mb-4">
                   {it.items.map(x => <li key={x} className="text-xs" style={{ color: C.muted }}>• {x}</li>)}
                 </ul>
-                <a href="/contact" className="font-mono text-xs" style={{ color: C.plasma }}>Live Demo â†’</a>
+                <a href="/contact" className="font-mono text-xs" style={{ color: C.plasma }}>Live Demo {"\u2192"}</a>
               </Tilt>
             </Reveal>
           ))}
@@ -1127,7 +969,7 @@ function Awards() {
         <div className="marquee-track gap-4 px-3">
           {row.map((a, i) => (
             <div key={i} className="flex items-center gap-2.5 shrink-0 rounded-full px-5 py-2.5" style={{ background: C.surface, border: "1px solid " + C.line }}>
-              <span style={{ color: "#f59e0b" }}>ðŸ†</span>
+              <span style={{ color: "#f59e0b" }}>{"\u{1F3C6}"}</span>
               <span className="font-mono text-xs whitespace-nowrap" style={{ color: C.ink }}>{a}</span>
             </div>
           ))}
@@ -1222,7 +1064,7 @@ function Resources({ hideHead = false }) {
             <Reveal key={i} delay={i * 0.08}>
               <Tilt amount={8} className="h-full rounded-2xl overflow-hidden" style={{ background: C.surface, border: "1px solid " + C.line, boxShadow: "var(--soft)" }}>
                 <div className="h-36" style={{ background: i === 1 ? "linear-gradient(120deg," + C.arc + "," + C.plasma + ")" : "linear-gradient(120deg," + C.plasma + "," + C.violet + ")" }}>
-                  <div className="h-full grid place-items-center text-4xl">{r.type === "Video" ? "â–¶" : "âœŽ"}</div>
+                  <div className="h-full grid place-items-center text-4xl">{r.type === "Video" ? "\u25B6" : "\u270E"}</div>
                 </div>
                 <div className="p-6">
                   <div className="flex items-center gap-3 mb-3">
@@ -1300,7 +1142,7 @@ function ClientsPartners() {
             <h3 className="font-display text-white" style={{ fontSize: "clamp(24px,4vw,40px)", letterSpacing: "-0.03em", lineHeight: 1.15 }}>
               It's Time To Accelerate Your Digital Transformation Journey
             </h3>
-            <div className="mt-8"><a href="/contact" className="inline-flex font-mono text-sm px-7 py-3.5 rounded-xl" style={{ background: "#fff", color: C.plasma, boxShadow: "0 14px 40px rgba(0,0,0,0.2)" }}>Let's Build Together â†’</a></div>
+            <div className="mt-8"><a href="/contact" className="inline-flex font-mono text-sm px-7 py-3.5 rounded-xl" style={{ background: "#fff", color: C.plasma, boxShadow: "0 14px 40px rgba(0,0,0,0.2)" }}>Let's Build Together {"\u2192"}</a></div>
           </div>
         </Reveal>
       </div>
@@ -1328,7 +1170,7 @@ function Contact() {
             Partner With Experts Who Leverage AI &amp; Tech To Transform Ideas Into Market-Leading Solutions.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/contact" className="font-mono text-sm px-7 py-3.5 rounded-xl" style={{ background: "#fff", color: C.plasma, boxShadow: "0 14px 40px rgba(0,0,0,0.25)" }}>Let's Build Together â†’</a>
+            <a href="/contact" className="font-mono text-sm px-7 py-3.5 rounded-xl" style={{ background: "#fff", color: C.plasma, boxShadow: "0 14px 40px rgba(0,0,0,0.25)" }}>Let's Build Together {"\u2192"}</a>
             <a href="/contact" className="font-mono text-sm px-7 py-3.5 rounded-xl text-white" style={{ border: "1px solid rgba(255,255,255,0.6)", background: "rgba(255,255,255,0.1)" }}>Connect on Whatsapp</a>
           </div>
         </Reveal>
@@ -1384,7 +1226,7 @@ function Footer() {
           ))}
         </div>
         <div className="mt-14 pt-7 flex flex-col sm:flex-row items-center justify-between gap-4" style={{ borderTop: "1px solid rgba(255,255,255,0.12)" }}>
-          <p className="font-mono text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>Â© 2026 Codexorr. All rights reserved.</p>
+          <p className="font-mono text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>{"\u00A9"} 2026 Codexorr. All rights reserved.</p>
           <div className="flex gap-5">
             {["Privacy", "Terms", "LinkedIn", "Twitter"].map(s => (
               <a key={s} href="#" className="font-mono text-xs transition-colors" style={{ color: "rgba(255,255,255,0.5)" }}
